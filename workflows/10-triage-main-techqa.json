@@ -1,0 +1,924 @@
+{
+  "name": "Triage Main - TechQA",
+  "nodes": [
+    {
+      "id": "ad9a5527-c294-4c7c-9d70-e0faf7b7d5d8",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -1400,
+        0
+      ],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "triage-techqa",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "webhookId": "74e08fc5-09b8-4c43-b58f-d4491eea269c"
+    },
+    {
+      "id": "fd8eb7d2-dd1c-4098-b4b1-49e482047b87",
+      "name": "Route by Modality",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        -1180,
+        0
+      ],
+      "parameters": {
+        "mode": "expression",
+        "numberOutputs": 4,
+        "output": "={{ $json.body.text !== undefined ? 0 : ($json.body.image_base64 !== undefined ? 1 : ($json.body.pdf_base64 !== undefined ? 2 : 3)) }}"
+      }
+    },
+    {
+      "id": "af50e80a-d9f4-4462-9150-41107a3e9da9",
+      "name": "Normalize Text",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -960,
+        -240
+      ],
+      "parameters": {
+        "mode": "manual",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "n1",
+              "name": "normalized_text",
+              "value": "={{ $json.body.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": false,
+        "options": {}
+      }
+    },
+    {
+      "id": "02b6c9ce-6d96-4d8b-b3f3-6fc9ca2a7bd7",
+      "name": "Image to Binary",
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -960,
+        -40
+      ],
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "body.image_base64",
+        "binaryPropertyName": "data",
+        "options": {}
+      }
+    },
+    {
+      "id": "b76c474c-dfc2-467f-9085-ff18525226d9",
+      "name": "Analyze Image",
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        -740,
+        -40
+      ],
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "models/gemini-3.6-flash"
+        },
+        "inputType": "binary",
+        "binaryPropertyName": "data",
+        "text": "Extract and transcribe all relevant text content from this image, verbatim. If it's an image of an error message or screenshot, describe what's shown and transcribe any visible text exactly.",
+        "options": {
+          "includeMergedResponse": true
+        }
+      },
+      "credentials": {
+        "googlePalmApi": {
+          "id": "jrn4Qx8oWpgwL3hx",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "id": "875dd49d-1312-4f97-a28b-cccd834668ea",
+      "name": "Normalize Image Text",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -520,
+        -40
+      ],
+      "parameters": {
+        "mode": "manual",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "n2",
+              "name": "normalized_text",
+              "value": "={{ $json.content.parts[0].text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": false,
+        "options": {}
+      }
+    },
+    {
+      "id": "29a7d24f-cf71-47ed-a05f-a2ee3d562fcd",
+      "name": "PDF to Binary",
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -960,
+        200
+      ],
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "body.pdf_base64",
+        "binaryPropertyName": "data",
+        "options": {}
+      }
+    },
+    {
+      "id": "11f1c1d7-a6da-4709-b2d1-d1e17ae0c869",
+      "name": "Analyze PDF",
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        -740,
+        200
+      ],
+      "parameters": {
+        "resource": "document",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "models/gemini-3.6-flash"
+        },
+        "inputType": "binary",
+        "binaryPropertyName": "data",
+        "text": "Extract and transcribe all relevant text content from this file, verbatim. If it's an image of an error message or screenshot, describe what's shown and transcribe any visible text exactly.",
+        "options": {
+          "includeMergedResponse": true
+        }
+      },
+      "credentials": {
+        "googlePalmApi": {
+          "id": "jrn4Qx8oWpgwL3hx",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "id": "2ee9f2b9-0ad1-47a7-80a9-fef88df50f3b",
+      "name": "Normalize PDF Text",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -520,
+        200
+      ],
+      "parameters": {
+        "mode": "manual",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "n3",
+              "name": "normalized_text",
+              "value": "={{ $json.content.parts[0].text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": false,
+        "options": {}
+      }
+    },
+    {
+      "id": "1fe698a1-3bcb-4b3f-92db-a8be9c6a029d",
+      "name": "No Modality Provided",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -960,
+        420
+      ],
+      "parameters": {}
+    },
+    {
+      "id": "d40c8e50-415f-4415-97b3-021107a8b956",
+      "name": "Combine Inputs",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -300,
+        -40
+      ],
+      "parameters": {
+        "mode": "append",
+        "numberInputs": 3
+      }
+    },
+    {
+      "id": "4984417d-89a2-413a-9efb-3bccaed15cb1",
+      "name": "Check Outbound Content",
+      "type": "@n8n/n8n-nodes-langchain.guardrails",
+      "typeVersion": 2,
+      "position": [
+        1480,
+        -40
+      ],
+      "parameters": {
+        "operation": "classify",
+        "text": "={{ $json.output.answer }}",
+        "guardrails": {
+          "jailbreak": {
+            "value": {
+              "threshold": 0.95
+            }
+          }
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "id": "bf339eb9-4031-40cd-bb81-9a83bc9c153c",
+      "name": "Should Escalate",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        1700,
+        -100
+      ],
+      "parameters": {
+        "mode": "expression",
+        "numberOutputs": 2,
+        "output": "={{ ($('Root AI Agent').item.json.output.confidence === 'low' || $('Root AI Agent').item.json.output.needs_human_review === true) ? 1 : 0 }}"
+      }
+    },
+    {
+      "id": "e85c0543-7cc7-40d8-894c-03f3750be1df",
+      "name": "Respond Answered",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1920,
+        -160
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"status\": \"answered\", \"answer\": $('Root AI Agent').item.json.output.answer, \"cited_source\": $('Root AI Agent').item.json.output.cited_source } }}",
+        "options": {}
+      }
+    },
+    {
+      "id": "e978d845-70f5-4818-b76c-da0b9bb5e4c9",
+      "name": "Respond Escalated",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1920,
+        40
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"status\": \"escalated\", \"message\": \"This has been routed to a human for review.\" } }}",
+        "options": {}
+      }
+    },
+    {
+      "id": "231a0ac2-5fa1-41fe-984c-4301d80d1ca4",
+      "name": "Check Jailbreak",
+      "type": "@n8n/n8n-nodes-langchain.guardrails",
+      "typeVersion": 2,
+      "position": [
+        -80,
+        -40
+      ],
+      "parameters": {
+        "operation": "classify",
+        "text": "={{ $json.normalized_text }}",
+        "guardrails": {
+          "jailbreak": {
+            "value": {
+              "threshold": 0.7
+            }
+          }
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "id": "e5207e36-213c-4570-93c4-c0cfd6e96fed",
+      "name": "Guardrails Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatMistralCloud",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        160
+      ],
+      "parameters": {
+        "model": "mistral-small-latest"
+      },
+      "credentials": {
+        "mistralCloudApi": {
+          "id": "wtnPQWEjBytZDQH9",
+          "name": "Mistral account"
+        }
+      }
+    },
+    {
+      "id": "ad8607eb-2fca-4f6b-81e5-46280efac0b9",
+      "name": "Reject Unsafe Content",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        140,
+        160
+      ],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"status\": \"rejected\", \"reason\": \"This request was blocked by content safety checks.\" } }}",
+        "options": {}
+      }
+    },
+    {
+      "id": "a65b742b-8a29-4d33-83c8-d65b4dd51e50",
+      "name": "Redact PII",
+      "type": "@n8n/n8n-nodes-langchain.guardrails",
+      "typeVersion": 2,
+      "position": [
+        360,
+        -40
+      ],
+      "parameters": {
+        "operation": "sanitize",
+        "text": "={{ $('Combine Inputs').item.json.normalized_text }}",
+        "guardrails": {
+          "pii": {
+            "value": {
+              "type": "all"
+            }
+          },
+          "secretKeys": {
+            "value": {
+              "permissiveness": "balanced"
+            }
+          }
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "id": "dc7fbb94-7924-405a-9d5c-1ac4ad8ad186",
+      "name": "Finalize Sanitized Text",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        580,
+        -40
+      ],
+      "parameters": {
+        "mode": "manual",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "n4",
+              "name": "normalized_text",
+              "value": "={{ $json.guardrailsInput }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": false,
+        "options": {}
+      }
+    },
+    {
+      "id": "5fb03e29-8c35-4996-ba2f-a3b8daea1276",
+      "name": "Qdrant Retriever Embeddings",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsMistralCloud",
+      "typeVersion": 1,
+      "position": [
+        1020,
+        440
+      ],
+      "parameters": {
+        "model": "mistral-embed"
+      },
+      "credentials": {
+        "mistralCloudApi": {
+          "id": "wtnPQWEjBytZDQH9",
+          "name": "Mistral account"
+        }
+      }
+    },
+    {
+      "id": "7a73f855-fad3-49fe-a06f-6153b904418b",
+      "name": "TechQA Docs Retriever",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+      "typeVersion": 1.3,
+      "position": [
+        1020,
+        220
+      ],
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolName": "search_techqa_docs",
+        "toolDescription": "Search real IBM Technotes for relevant technical support passages.",
+        "qdrantCollection": {
+          "__rl": true,
+          "mode": "id",
+          "value": "techqa_docs"
+        },
+        "topK": 15,
+        "includeDocumentMetadata": true,
+        "options": {},
+        "useReranker": true
+      },
+      "credentials": {
+        "qdrantApi": {
+          "id": "fZADN21zIvPURzSl",
+          "name": "Qdrant account"
+        }
+      }
+    },
+    {
+      "id": "9a8fd55f-aff6-4454-ac4e-f605b5eef9fe",
+      "name": "Root Agent Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatMistralCloud",
+      "typeVersion": 1,
+      "position": [
+        620,
+        220
+      ],
+      "parameters": {
+        "model": "mistral-small-latest",
+        "options": {
+          "temperature": 0.1
+        }
+      },
+      "credentials": {
+        "mistralCloudApi": {
+          "id": "wtnPQWEjBytZDQH9",
+          "name": "Mistral account"
+        }
+      }
+    },
+    {
+      "id": "28e38d74-9d94-45c7-9a00-691c86badfb8",
+      "name": "Agent Output Parser",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        820,
+        220
+      ],
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "={\n  \"type\": \"object\",\n  \"properties\": {\n    \"answer\": { \"type\": \"string\" },\n    \"confidence\": { \"type\": \"string\", \"enum\": [\"high\", \"medium\", \"low\"] },\n    \"needs_handoff\": { \"type\": \"boolean\" },\n    \"needs_human_review\": { \"type\": \"boolean\" },\n    \"cited_source\": { \"type\": \"string\" }\n  },\n  \"required\": [\"answer\", \"confidence\", \"needs_handoff\", \"needs_human_review\", \"cited_source\"]\n}",
+        "autoFix": true
+      }
+    },
+    {
+      "id": "a181b6df-1bb1-4ab1-8497-feef6735f777",
+      "name": "Resolution Specialist",
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 3,
+      "position": [
+        1220,
+        220
+      ],
+      "parameters": {
+        "toolDescription": "Second-attempt resolution specialist. Use when the first documentation search failed to answer confidently.",
+        "text": "={{ $fromAI('question', 'The original support question, verbatim', 'string') }}",
+        "hasOutputParser": false,
+        "options": {
+          "systemMessage": "Resolution specialist: the triage agent could not answer from docs alone. Try search_techqa_docs again with rephrased terms. Reply with your best answer + real cited doc path, using only what the retrieved context actually says - do not invent configuration values, commands, or steps beyond what the context states. If still unconfident, say clearly \"needs human review\" instead of guessing.",
+          "maxIterations": 15
+        }
+      }
+    },
+    {
+      "id": "e77c4ac2-8694-49a9-af73-2d2c55d84943",
+      "name": "Resolution Specialist Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatMistralCloud",
+      "typeVersion": 1,
+      "position": [
+        1220,
+        440
+      ],
+      "parameters": {
+        "model": "mistral-small-latest",
+        "options": {
+          "temperature": 0.1
+        }
+      },
+      "credentials": {
+        "mistralCloudApi": {
+          "id": "wtnPQWEjBytZDQH9",
+          "name": "Mistral account"
+        }
+      }
+    },
+    {
+      "id": "4ea00b66-f894-44a7-97cd-153ca9809b1f",
+      "name": "Root AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        820,
+        -40
+      ],
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.normalized_text }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "Support triage agent for IBM technical support, grounded in real Technotes ({{ $now.toFormat('yyyy-MM-dd') }}). Use ONLY search_techqa_docs context to answer - do not invent configuration values, file paths, commands, or troubleshooting steps beyond what the retrieved context actually states, even if you know the general answer from training. No answer found -> try resolution_specialist once before giving up. cited_source = real doc path from context, or empty string \"\" if none - never invent one, never write an explanatory sentence there. needs_handoff=true only if deferring entirely without trying. If resolution_specialist says it cannot answer / needs review, set needs_human_review=true, confidence=\"low\". No supporting context -> confidence=\"low\", say so.",
+          "maxIterations": 15
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 65000,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "id": "8f2c9a11-3d4e-4b7a-9c1f-2e5a6b8d9f0c",
+      "name": "Reranker Cohere",
+      "type": "@n8n/n8n-nodes-langchain.rerankerCohere",
+      "typeVersion": 1,
+      "position": [
+        1020,
+        400
+      ],
+      "parameters": {
+        "modelName": "rerank-v3.5",
+        "topN": 6
+      },
+      "credentials": {
+        "cohereApi": {
+          "id": "XSvmMOgOrqHasKru",
+          "name": "Cohere account"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 4,
+      "waitBetweenTries": 5000
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Route by Modality",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route by Modality": {
+      "main": [
+        [
+          {
+            "node": "Normalize Text",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Image to Binary",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "PDF to Binary",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Modality Provided",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize Text": {
+      "main": [
+        [
+          {
+            "node": "Combine Inputs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Image to Binary": {
+      "main": [
+        [
+          {
+            "node": "Analyze Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyze Image": {
+      "main": [
+        [
+          {
+            "node": "Normalize Image Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize Image Text": {
+      "main": [
+        [
+          {
+            "node": "Combine Inputs",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "PDF to Binary": {
+      "main": [
+        [
+          {
+            "node": "Analyze PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyze PDF": {
+      "main": [
+        [
+          {
+            "node": "Normalize PDF Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize PDF Text": {
+      "main": [
+        [
+          {
+            "node": "Combine Inputs",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Combine Inputs": {
+      "main": [
+        [
+          {
+            "node": "Check Jailbreak",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Jailbreak": {
+      "main": [
+        [
+          {
+            "node": "Redact PII",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Reject Unsafe Content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Guardrails Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Check Jailbreak",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Redact PII",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Check Outbound Content",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redact PII": {
+      "main": [
+        [
+          {
+            "node": "Finalize Sanitized Text",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond Escalated",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Finalize Sanitized Text": {
+      "main": [
+        [
+          {
+            "node": "Root AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Qdrant Retriever Embeddings": {
+      "ai_embedding": [
+        [
+          {
+            "node": "TechQA Docs Retriever",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Resolution Specialist Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Resolution Specialist",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Resolution Specialist": {
+      "ai_tool": [
+        [
+          {
+            "node": "Root AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Root Agent Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Root AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Agent Output Parser",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agent Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Root AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Root AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Check Outbound Content",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond Escalated",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Outbound Content": {
+      "main": [
+        [
+          {
+            "node": "Should Escalate",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond Escalated",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Should Escalate": {
+      "main": [
+        [
+          {
+            "node": "Respond Answered",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond Escalated",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TechQA Docs Retriever": {
+      "ai_tool": [
+        [
+          {
+            "node": "Root AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "Resolution Specialist",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reranker Cohere": {
+      "ai_reranker": [
+        [
+          {
+            "node": "TechQA Docs Retriever",
+            "type": "ai_reranker",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

@@ -1,0 +1,1055 @@
+{
+  "id": "s1kbsZdQVCr12ikm",
+  "name": "Evaluation - TechQA",
+  "description": null,
+  "active": false,
+  "activeVersionId": null,
+  "createdAt": "2026-08-24T16:32:12.223Z",
+  "updatedAt": "2026-08-25T20:50:25.842Z",
+  "isArchived": false,
+  "versionId": "3bd6bbd9-63ef-4c7d-b718-df1d4e90895c",
+  "versionCounter": 45,
+  "sourceWorkflowId": null,
+  "triggerCount": 0,
+  "nodes": [
+    {
+      "id": "e1a1a1a1-0001-4a11-9a11-000000000001",
+      "name": "Evaluation Trigger",
+      "type": "n8n-nodes-base.evaluationTrigger",
+      "typeVersion": 4.7,
+      "position": [
+        -1400,
+        0
+      ],
+      "parameters": {
+        "source": "dataTable",
+        "dataTableId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "Iimzb9Vk0LPT1e8K"
+        },
+        "limitRows": true,
+        "maxRows": 15,
+        "filterRows": true,
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "3"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "e1a1a1a1-0002-4a11-9a11-000000000002",
+      "name": "Call Triage Main",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        -1160,
+        0
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:5678/webhook/triage-techqa",
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "json",
+        "jsonBody": "={{ { \"text\": $json.question } }}",
+        "options": {
+          "timeout": 300000
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000
+    },
+    {
+      "id": "e1a1a1a1-0003-4a11-9a11-000000000003",
+      "name": "Extract Result",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        -920,
+        0
+      ],
+      "parameters": {
+        "mode": "manual",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "r1",
+              "name": "question",
+              "value": "={{ $('Evaluation Trigger').item.json.question }}",
+              "type": "string"
+            },
+            {
+              "id": "r2",
+              "name": "expected_answer",
+              "value": "={{ $('Evaluation Trigger').item.json.expected_answer }}",
+              "type": "string"
+            },
+            {
+              "id": "r3",
+              "name": "actual_answer",
+              "value": "={{ $json.answer || $json.message || $json.reason || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "r4",
+              "name": "status",
+              "value": "={{ $json.status }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": false,
+        "options": {}
+      }
+    },
+    {
+      "id": "e1a1a1a1-0011-4a11-9a11-00000000000e",
+      "name": "Retrieve Context Embeddings",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsMistralCloud",
+      "typeVersion": 1,
+      "position": [
+        -680,
+        200
+      ],
+      "parameters": {
+        "model": "mistral-embed"
+      },
+      "credentials": {
+        "mistralCloudApi": {
+          "id": "wtnPQWEjBytZDQH9",
+          "name": "Mistral account"
+        }
+      }
+    },
+    {
+      "id": "e1a1a1a1-0012-4a11-9a11-00000000000f",
+      "name": "Retrieve Context",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+      "typeVersion": 1.3,
+      "position": [
+        -680,
+        0
+      ],
+      "parameters": {
+        "mode": "load",
+        "qdrantCollection": {
+          "__rl": true,
+          "mode": "id",
+          "value": "techqa_docs"
+        },
+        "prompt": "={{ $json.question }}",
+        "topK": 15,
+        "includeDocumentMetadata": true,
+        "options": {},
+        "useReranker": true
+      },
+      "credentials": {
+        "qdrantApi": {
+          "id": "fZADN21zIvPURzSl",
+          "name": "Qdrant account"
+        }
+      }
+    },
+    {
+      "id": "e1a1a1a1-0013-4a11-9a11-000000000010",
+      "name": "Combine Retrieved Context",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -200,
+        0
+      ],
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const chunks = $input.all()\n  .map(item => item.json.document && item.json.document.pageContent)\n  .filter(Boolean);\nconst source = $('Extract Result').first().json;\nconst first = $input.first();\nreturn [{\n  json: {\n    question: source.question,\n    expected_answer: source.expected_answer,\n    actual_answer: source.actual_answer,\n    status: source.status,\n    retrieved_context: chunks.join('\\n\\n---\\n\\n'),\n    retrieved_chunks: chunks,\n    hit_at_k: first ? first.json.hit_at_k : false,\n    reciprocal_rank: first ? first.json.reciprocal_rank : 0,\n  }\n}];"
+      }
+    },
+    {
+      "id": "e1a1a1a1-0004-4a11-9a11-000000000004",
+      "name": "Answer Correctness Judge",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        40,
+        0
+      ],
+      "parameters": {
+        "promptType": "define",
+        "text": "=Ground truth (answer grounded in a real IBM Technote, for a real question asked on IBM's developer support forums):\n{{ $json.expected_answer }}\n\nSystem's actual answer:\n{{ $json.actual_answer }}\n\nRate how consistent the actual answer is with this specific ground truth resolution on a scale of 1 (contradicts or unrelated) to 5 (fully consistent, no unsupported claims). Note: the ground truth is one real person's resolution and may reference environment-specific details (a config value, a PR, an external link) the system cannot be expected to reproduce verbatim - score based on substantive consistency with the underlying fix, not exact wording. Return ONLY JSON: {\"score\": <1-5 integer>}.",
+        "hasOutputParser": true,
+        "messages": {}
+      },
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000
+    },
+    {
+      "id": "e1a1a1a1-0005-4a11-9a11-000000000005",
+      "name": "Answer Correctness Output Parser",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        40,
+        200
+      ],
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "={\n  \"type\": \"object\",\n  \"properties\": { \"score\": { \"type\": \"number\" } },\n  \"required\": [\"score\"]\n}",
+        "autoFix": false
+      }
+    },
+    {
+      "id": "e1a1a1a1-0006-4a11-9a11-000000000006",
+      "name": "Answer Correctness Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatMistralCloud",
+      "typeVersion": 1,
+      "position": [
+        40,
+        400
+      ],
+      "parameters": {
+        "model": "mistral-small-latest"
+      },
+      "credentials": {
+        "mistralCloudApi": {
+          "id": "wtnPQWEjBytZDQH9",
+          "name": "Mistral account"
+        }
+      }
+    },
+    {
+      "id": "e1a1a1a1-0007-4a11-9a11-000000000007",
+      "name": "Generate Reverse Questions",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        280,
+        0
+      ],
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are evaluating answer relevancy using the RAGAS methodology: given an answer, generate questions that this answer would be a good, complete response to (reverse-engineering the question from the answer).\n\nSystem's actual answer:\n{{ $('Combine Retrieved Context').item.json.actual_answer }}\n\nGenerate exactly 3 different questions that this answer directly and completely responds to. If the answer is noncommittal, vague, or a refusal/escalation with no real informational content (e.g. \"this has been routed to a human for review\"), return an empty list instead - a noncommittal answer cannot be reverse-engineered into a real question.\n\nReturn ONLY JSON: {\"questions\": [\"<question 1>\", \"<question 2>\", \"<question 3>\"]} or {\"questions\": []} for noncommittal answers.",
+        "hasOutputParser": true,
+        "messages": {}
+      },
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000
+    },
+    {
+      "id": "e1a1a1a1-0008-4a11-9a11-000000000008",
+      "name": "Reverse Questions Output Parser",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        280,
+        200
+      ],
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\"type\": \"object\", \"properties\": {\"questions\": {\"type\": \"array\", \"items\": {\"type\": \"string\"}}}, \"required\": [\"questions\"]}",
+        "autoFix": false
+      }
+    },
+    {
+      "id": "e1a1a1a1-0009-4a11-9a11-000000000009",
+      "name": "Reverse Questions Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatMistralCloud",
+      "typeVersion": 1,
+      "position": [
+        280,
+        400
+      ],
+      "parameters": {
+        "model": "mistral-small-latest"
+      },
+      "credentials": {
+        "mistralCloudApi": {
+          "id": "wtnPQWEjBytZDQH9",
+          "name": "Mistral account"
+        }
+      }
+    },
+    {
+      "id": "e1a1a1a1-0014-4a11-9a11-000000000011",
+      "name": "Faithfulness Judge",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        520,
+        0
+      ],
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are evaluating faithfulness using the RAGAS methodology: decompose the system's answer into distinct atomic factual claims, then judge whether EACH claim is directly supported by the retrieved context. This is claim-level grounding checking, not a holistic 1-5 rating.\n\nSystem's actual answer:\n{{ $('Combine Retrieved Context').item.json.actual_answer }}\n\nRetrieved documentation context (what the system's RAG retriever actually found for this question):\n{{ $('Combine Retrieved Context').item.json.retrieved_context }}\n\nSteps:\n1. Break the answer into a list of distinct, atomic factual claims (a claim that combines two facts should be split into two claims).\n2. For each claim, judge: is it directly supported/entailed by the retrieved context above (true), or not supported / contradicted / absent from the context (false)?\n\nThis is independent of whether the answer is a good answer to the question or matches any external ground truth - only check whether each claim is grounded in the retrieved context provided above.\n\nReturn ONLY JSON: {\"claims\": [{\"claim\": \"<claim text>\", \"supported\": true|false}, ...]}. If the answer makes no factual claims (e.g. it's a pure refusal), return {\"claims\": []}.",
+        "hasOutputParser": true,
+        "messages": {}
+      },
+      "retryOnFail": true,
+      "maxTries": 5,
+      "waitBetweenTries": 5000
+    },
+    {
+      "id": "e1a1a1a1-0015-4a11-9a11-000000000012",
+      "name": "Faithfulness Output Parser",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        520,
+        200
+      ],
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\"type\": \"object\", \"properties\": {\"claims\": {\"type\": \"array\", \"items\": {\"type\": \"object\", \"properties\": {\"claim\": {\"type\": \"string\"}, \"supported\": {\"type\": \"boolean\"}}, \"required\": [\"claim\", \"supported\"]}}}, \"required\": [\"claims\"]}",
+        "autoFix": false
+      }
+    },
+    {
+      "id": "e1a1a1a1-0016-4a11-9a11-000000000013",
+      "name": "Faithfulness Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatMistralCloud",
+      "typeVersion": 1,
+      "position": [
+        520,
+        400
+      ],
+      "parameters": {
+        "model": "mistral-small-latest"
+      },
+      "credentials": {
+        "mistralCloudApi": {
+          "id": "wtnPQWEjBytZDQH9",
+          "name": "Mistral account"
+        }
+      }
+    },
+    {
+      "id": "e1a1a1a1-0010-4a11-9a11-00000000000a",
+      "name": "Record Scores",
+      "type": "n8n-nodes-base.evaluation",
+      "typeVersion": 4.8,
+      "position": [
+        760,
+        0
+      ],
+      "parameters": {
+        "operation": "setMetrics",
+        "metric": "customMetrics",
+        "metrics": {
+          "assignments": [
+            {
+              "id": "m1",
+              "name": "Answer Correctness",
+              "type": "number",
+              "value": "={{ $('Answer Correctness Judge').item.json.output.score }}"
+            },
+            {
+              "id": "m4",
+              "name": "Hit Rate@K",
+              "type": "number",
+              "value": "={{ $('Combine Retrieved Context').first().json.hit_at_k ? 1 : 0 }}"
+            },
+            {
+              "id": "m5",
+              "name": "Reciprocal Rank",
+              "type": "number",
+              "value": "={{ $('Combine Retrieved Context').first().json.reciprocal_rank }}"
+            },
+            {
+              "id": "m6",
+              "name": "Answer Relevancy",
+              "type": "number",
+              "value": "={{ $('Compute Answer Relevancy').item.json.answer_relevancy_score }}"
+            },
+            {
+              "id": "m7",
+              "name": "Faithfulness (RAGAS)",
+              "type": "number",
+              "value": "={{ $('Compute Faithfulness Score').item.json.faithfulness_score }}"
+            },
+            {
+              "id": "m8",
+              "name": "Context Precision",
+              "type": "number",
+              "value": "={{ $('Compute Context Precision').first().json.context_precision_score }}"
+            },
+            {
+              "id": "m9",
+              "name": "Context Recall",
+              "type": "number",
+              "value": "={{ $('Compute Context Recall').first().json.context_recall_score }}"
+            },
+            {
+              "id": "m10",
+              "name": "RAGAS Overall",
+              "type": "number",
+              "value": "={{ ($('Compute Faithfulness Score').item.json.faithfulness_score + $('Compute Answer Relevancy').item.json.answer_relevancy_score + $('Compute Context Precision').first().json.context_precision_score + $('Compute Context Recall').first().json.context_recall_score) / 4 }}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "e1a1a1a1-0017-4a11-9a11-000000000014",
+      "name": "Is Answered",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -200,
+        0
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c1",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "answered",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "e1a1a1a1-0018-4a11-9a11-000000000015",
+      "name": "Record Scores (Escalated)",
+      "type": "n8n-nodes-base.evaluation",
+      "typeVersion": 4.8,
+      "position": [
+        40,
+        600
+      ],
+      "parameters": {
+        "operation": "setMetrics",
+        "metric": "customMetrics",
+        "metrics": {
+          "assignments": [
+            {
+              "id": "m1",
+              "name": "Hit Rate@K",
+              "type": "number",
+              "value": "={{ $('Combine Retrieved Context').first().json.hit_at_k ? 1 : 0 }}"
+            },
+            {
+              "id": "m2",
+              "name": "Reciprocal Rank",
+              "type": "number",
+              "value": "={{ $('Combine Retrieved Context').first().json.reciprocal_rank }}"
+            },
+            {
+              "id": "m3",
+              "name": "Context Precision",
+              "type": "number",
+              "value": "={{ $('Compute Context Precision').first().json.context_precision_score }}"
+            },
+            {
+              "id": "m4",
+              "name": "Context Recall",
+              "type": "number",
+              "value": "={{ $('Compute Context Recall').first().json.context_recall_score }}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "e1f2c9a1-3d4e-4b7a-9c1f-eval0reranker",
+      "name": "Eval Reranker Cohere",
+      "type": "@n8n/n8n-nodes-langchain.rerankerCohere",
+      "typeVersion": 1,
+      "position": [
+        -680,
+        180
+      ],
+      "parameters": {
+        "modelName": "rerank-v3.5",
+        "topN": 6
+      },
+      "credentials": {
+        "cohereApi": {
+          "id": "XSvmMOgOrqHasKru",
+          "name": "Cohere account"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 4,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "function sanitize(name) {\n  return (name || \"\").replace(/[^a-zA-Z0-9._-]+/g, \"-\").replace(/^-+|-+$/g, \"\");\n}\n\nconst expectedSource = sanitize($('Evaluation Trigger').first().json.source_url);\nconst retrieved = $input.all().map(i => i.json);\n\nlet hitAtK = false;\nlet reciprocalRank = 0;\nfor (let rank = 0; rank < retrieved.length; rank++) {\n  const meta = retrieved[rank].document && retrieved[rank].document.metadata;\n  const chunkSource = sanitize(meta && meta.source);\n  if (expectedSource && chunkSource === expectedSource) {\n    hitAtK = true;\n    reciprocalRank = 1 / (rank + 1);\n    break;\n  }\n}\n\nreturn $input.all().map(item => ({\n  json: {\n    ...item.json,\n    hit_at_k: hitAtK,\n    reciprocal_rank: reciprocalRank,\n  },\n}));"
+      },
+      "id": "compute-retrieval-metrics-node",
+      "name": "Compute Retrieval Metrics",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -320,
+        0
+      ]
+    },
+    {
+      "id": "ragas-ctx-precision-judge",
+      "name": "Context Precision Judge",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        60,
+        -180
+      ],
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are evaluating context precision using the RAGAS methodology: for each retrieved chunk below (numbered, in retrieval rank order), judge whether it is relevant to answering the question - i.e. whether it would help produce the reference answer.\n\nQuestion:\n{{ $('Combine Retrieved Context').item.json.question }}\n\nReference answer (ground truth):\n{{ $('Combine Retrieved Context').item.json.expected_answer }}\n\nRetrieved chunks, in rank order (chunk 1 is the top-ranked result):\n{{ $('Combine Retrieved Context').item.json.retrieved_chunks.map((c, i) => `Chunk ${i+1}:\\n${c}`).join('\\n\\n---\\n\\n') }}\n\nReturn ONLY JSON: {\"relevance\": [true|false, true|false, ...]} - exactly one boolean per chunk, in the same order as listed above.",
+        "hasOutputParser": true,
+        "messages": {}
+      }
+    },
+    {
+      "id": "ragas-ctx-precision-parser",
+      "name": "Context Precision Output Parser",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        60,
+        -60
+      ],
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\"type\": \"object\", \"properties\": {\"relevance\": {\"type\": \"array\", \"items\": {\"type\": \"boolean\"}}}, \"required\": [\"relevance\"]}",
+        "autoFix": false
+      }
+    },
+    {
+      "id": "ragas-ctx-precision-model",
+      "name": "Context Precision Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatMistralCloud",
+      "typeVersion": 1,
+      "position": [
+        60,
+        -300
+      ],
+      "parameters": {
+        "model": "mistral-small-latest"
+      },
+      "credentials": {
+        "mistralCloudApi": {
+          "id": "wtnPQWEjBytZDQH9",
+          "name": "Mistral account"
+        }
+      }
+    },
+    {
+      "id": "ragas-compute-ctx-precision",
+      "name": "Compute Context Precision",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        320,
+        -180
+      ],
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const relevance = ($json.output && $json.output.relevance) || [];\nlet numRelevant = 0;\nlet sumPrecisionAtK = 0;\nfor (let k = 0; k < relevance.length; k++) {\n  if (relevance[k]) {\n    numRelevant++;\n    sumPrecisionAtK += numRelevant / (k + 1);\n  }\n}\nconst score = numRelevant > 0 ? sumPrecisionAtK / numRelevant : 0;\nconst source = $('Combine Retrieved Context').first().json;\nreturn { json: { ...source, context_precision_score: score } };"
+      }
+    },
+    {
+      "id": "ragas-ctx-recall-judge",
+      "name": "Context Recall Judge",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        580,
+        -180
+      ],
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are evaluating context recall using the RAGAS methodology: decompose the REFERENCE answer (ground truth) into distinct atomic factual claims, then judge whether each claim can be attributed to (is supported by) the retrieved context.\n\nReference answer (ground truth):\n{{ $('Combine Retrieved Context').item.json.expected_answer }}\n\nRetrieved context:\n{{ $('Combine Retrieved Context').item.json.retrieved_context }}\n\nSteps:\n1. Break the reference answer into a list of distinct, atomic factual claims.\n2. For each claim, judge: is it attributable to / supported by the retrieved context above (true), or not present in the retrieved context (false)?\n\nReturn ONLY JSON: {\"claims\": [{\"claim\": \"<claim text>\", \"attributed\": true|false}, ...]}.",
+        "hasOutputParser": true,
+        "messages": {}
+      }
+    },
+    {
+      "id": "ragas-ctx-recall-parser",
+      "name": "Context Recall Output Parser",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        580,
+        -60
+      ],
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\"type\": \"object\", \"properties\": {\"claims\": {\"type\": \"array\", \"items\": {\"type\": \"object\", \"properties\": {\"claim\": {\"type\": \"string\"}, \"attributed\": {\"type\": \"boolean\"}}, \"required\": [\"claim\", \"attributed\"]}}}, \"required\": [\"claims\"]}",
+        "autoFix": false
+      }
+    },
+    {
+      "id": "ragas-ctx-recall-model",
+      "name": "Context Recall Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatMistralCloud",
+      "typeVersion": 1,
+      "position": [
+        580,
+        -300
+      ],
+      "parameters": {
+        "model": "mistral-small-latest"
+      },
+      "credentials": {
+        "mistralCloudApi": {
+          "id": "wtnPQWEjBytZDQH9",
+          "name": "Mistral account"
+        }
+      }
+    },
+    {
+      "id": "ragas-compute-ctx-recall",
+      "name": "Compute Context Recall",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        840,
+        -180
+      ],
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const claims = ($json.output && $json.output.claims) || [];\nconst total = claims.length;\nconst attributed = claims.filter(c => c.attributed).length;\nconst score = total > 0 ? attributed / total : null;\nconst source = $('Combine Retrieved Context').first().json;\nreturn { json: { ...source, context_recall_score: score } };"
+      }
+    },
+    {
+      "id": "ragas-compute-faithfulness",
+      "name": "Compute Faithfulness Score",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        780,
+        0
+      ],
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const claims = ($json.output && $json.output.claims) || [];\nconst total = claims.length;\nconst supported = claims.filter(c => c.supported).length;\nconst score = total > 0 ? supported / total : null;\nreturn { json: { ...$json, faithfulness_score: score, faithfulness_claim_count: total, faithfulness_supported_count: supported } };"
+      }
+    },
+    {
+      "id": "ragas-embed-questions",
+      "name": "Embed Questions",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        540,
+        0
+      ],
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.mistral.ai/v1/embeddings",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "mistralCloudApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ model: \"mistral-embed\", input: [ $('Combine Retrieved Context').item.json.question, ...($json.output.questions || []) ] }) }}",
+        "options": {}
+      },
+      "credentials": {
+        "mistralCloudApi": {
+          "id": "wtnPQWEjBytZDQH9",
+          "name": "Mistral account"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000
+    },
+    {
+      "id": "ragas-compute-relevancy",
+      "name": "Compute Answer Relevancy",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        800,
+        0
+      ],
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "function cosineSim(a, b) {\n  let dot = 0, na = 0, nb = 0;\n  for (let i = 0; i < a.length; i++) { dot += a[i]*b[i]; na += a[i]*a[i]; nb += b[i]*b[i]; }\n  const denom = Math.sqrt(na) * Math.sqrt(nb);\n  return denom > 0 ? dot / denom : 0;\n}\nconst data = ($json.data || []).map(d => d.embedding);\nif (data.length < 2) {\n  return { json: { ...$json, answer_relevancy_score: 0 } };\n}\nconst originalQ = data[0];\nconst generated = data.slice(1);\nconst sims = generated.map(e => cosineSim(originalQ, e));\nconst avg = sims.reduce((a, b) => a + b, 0) / sims.length;\nreturn { json: { ...$json, answer_relevancy_score: avg } };"
+      }
+    }
+  ],
+  "connections": {
+    "Evaluation Trigger": {
+      "main": [
+        [
+          {
+            "node": "Call Triage Main",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Triage Main": {
+      "main": [
+        [
+          {
+            "node": "Extract Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Result": {
+      "main": [
+        [
+          {
+            "node": "Retrieve Context",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Retrieve Context Embeddings": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Retrieve Context",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Retrieve Context": {
+      "main": [
+        [
+          {
+            "node": "Compute Retrieval Metrics",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Combine Retrieved Context": {
+      "main": [
+        [
+          {
+            "node": "Context Precision Judge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Answer Correctness Judge": {
+      "main": [
+        [
+          {
+            "node": "Generate Reverse Questions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Answer Correctness Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Answer Correctness Judge",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Answer Correctness Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Answer Correctness Judge",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Reverse Questions": {
+      "main": [
+        [
+          {
+            "node": "Embed Questions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reverse Questions Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Generate Reverse Questions",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reverse Questions Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Generate Reverse Questions",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Faithfulness Judge": {
+      "main": [
+        [
+          {
+            "node": "Compute Faithfulness Score",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Faithfulness Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Faithfulness Judge",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Faithfulness Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Faithfulness Judge",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Answered": {
+      "main": [
+        [
+          {
+            "node": "Answer Correctness Judge",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Record Scores (Escalated)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Eval Reranker Cohere": {
+      "ai_reranker": [
+        [
+          {
+            "node": "Retrieve Context",
+            "type": "ai_reranker",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Compute Retrieval Metrics": {
+      "main": [
+        [
+          {
+            "node": "Combine Retrieved Context",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Context Precision Judge": {
+      "main": [
+        [
+          {
+            "node": "Compute Context Precision",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Compute Context Precision": {
+      "main": [
+        [
+          {
+            "node": "Context Recall Judge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Context Recall Judge": {
+      "main": [
+        [
+          {
+            "node": "Compute Context Recall",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Compute Context Recall": {
+      "main": [
+        [
+          {
+            "node": "Is Answered",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Context Precision Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Context Precision Judge",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Context Precision Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Context Precision Judge",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Context Recall Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Context Recall Judge",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Context Recall Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Context Recall Judge",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Compute Faithfulness Score": {
+      "main": [
+        [
+          {
+            "node": "Record Scores",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embed Questions": {
+      "main": [
+        [
+          {
+            "node": "Compute Answer Relevancy",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Compute Answer Relevancy": {
+      "main": [
+        [
+          {
+            "node": "Faithfulness Judge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "nodeGroups": [],
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "pinData": null,
+  "meta": null,
+  "tags": [],
+  "shared": [
+    {
+      "role": "workflow:owner",
+      "workflowId": "s1kbsZdQVCr12ikm",
+      "projectId": "zeJXCUBsUnhozElb",
+      "project": {
+        "id": "zeJXCUBsUnhozElb",
+        "name": "Bejad Ahmed <bejad.ahmed77@gmail.com>",
+        "type": "personal",
+        "icon": null,
+        "description": null,
+        "customTelemetryTags": [],
+        "creatorId": "82370650-50ef-456b-a2ad-8e615d0940f3",
+        "createdAt": "2026-08-22T16:30:50.954Z",
+        "updatedAt": "2026-08-22T22:03:51.786Z"
+      },
+      "createdAt": "2026-08-24T16:32:12.228Z",
+      "updatedAt": "2026-08-24T16:32:12.228Z"
+    }
+  ],
+  "activeVersion": null
+}
