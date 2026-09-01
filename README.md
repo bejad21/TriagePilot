@@ -4,6 +4,11 @@ A self-hosted, n8n-based multi-agent RAG system that triages support tickets. It
 directly when it can ground the answer in real documentation, escalates to a human when it
 can't, and runs guardrails on every request and response to block or redact unsafe content.
 
+![Live triage request running end to end](docs/evidence/wix-live-demo.gif)
+*A real Wix support question sent to the live webhook: the request moves through guardrails,
+retrieval, and the root agent, then returns a grounded, cited answer. Captured directly from an
+active n8n execution, not staged.*
+
 Support backlogs are expensive. A 500-ticket backlog, even with a small churn increase from slow
 response times, can cost a business six figures a quarter, and most service desks still spend
 the bulk of their budget on staff rather than on tooling that could clear that backlog faster.
