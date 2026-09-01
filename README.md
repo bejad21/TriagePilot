@@ -38,6 +38,11 @@ support documentation with real developer-forum questions (the TechQA benchmark)
 the workflow design and nothing else. Separate Qdrant collections, separate webhooks, so
 changing one never touches the other.
 
+![Triage workflow canvas](docs/evidence/wix-triage-workflow.png)
+*The live n8n canvas for the Wix triage workflow: modality routing on the left, guardrails and
+the root agent in the middle, the resolution sub-agent and Qdrant retriever below it, escalation
+routing on the right.*
+
 Workflow JSON lives in `workflows/`:
 
 - `06-ingest-wix-docs.json` / `09-ingest-techqa-docs.json`: one-time ingestion into Qdrant
@@ -104,6 +109,11 @@ similarity; Context Precision and Context Recall score whether the retrieved chu
 actually relevant and whether the reference answer is traceable back to them; RAGAS Overall is
 the mean of those four. Answer Correctness, a direct 1-5 comparison against ground truth, is
 kept as a supplementary fifth metric.
+
+![Evaluation workflow canvas](docs/evidence/wix-evaluation-workflow.png)
+*The live n8n canvas for the Wix evaluation pipeline: retrieval and context scoring on the left,
+the answered/escalated branch in the middle, Answer Correctness / Answer Relevancy / Faithfulness
+judges on the right, all feeding into Record Scores.*
 
 Real 30-row results, same live methodology for both systems, full run history and diagnosis in
 `eval/RESULTS.md`:
