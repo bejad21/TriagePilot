@@ -8,6 +8,16 @@ Support backlogs are expensive. A 500-ticket backlog, even with a small churn in
 response times, can cost a business six figures a quarter, and most service desks still spend
 the bulk of their budget on staff rather than on tooling that could clear that backlog faster.
 
+**Results at a glance:** two independent deployments, real RAGAS Faithfulness of 0.89 (Wix) and
+0.85 (TechQA), in the same range as published production RAG systems report (around 0.89-0.90).
+Full metrics and how they were measured are in [Evaluation](#evaluation) below.
+
+**Contents:** [Architecture](#architecture) · [Tech stack](#tech-stack) ·
+[Running it locally](#running-it-locally) · [Evaluation](#evaluation) ·
+[Observability](#observability) ·
+[What's deliberately not included](#whats-deliberately-not-included) ·
+[Current status](#current-status)
+
 ## Architecture
 
 ```
@@ -85,13 +95,18 @@ curl -s -X POST http://localhost:5678/webhook/triage-wix \
 ```
 
 Import the six workflow JSON files into your own n8n instance, wire up a Mistral Cloud
-credential, a Qdrant credential, and a Cohere credential, then point each ingestion workflow at
-its own corpus (the matching `eval/prepare_*_corpus.py` script's output) before running the
-matching query workflow.
+credential, a Qdrant credential, and a Cohere credential, then build each corpus locally
+(`pip install pandas` is the only dependency) and point the matching ingestion workflow at its
+output before running the matching query workflow:
+
+```bash
+python eval/prepare_wix_corpus.py      # writes infra/local_files/wix-docs/
+python eval/prepare_techqa_corpus.py   # writes infra/local_files/techqa-docs/
+```
 
 ## Evaluation
 
-Two real, non-synthetic datasets, each pointed at a different product's actual support content:
+Two non-synthetic datasets, each built from a different product's real support content:
 
 - **Wix**: `eval/prepare_wix_corpus.py` builds a corpus from a real Wix help-center KB, paired
   with 200 real customer support questions and expert-reviewed answers (`Wix/WixQA` on Hugging
@@ -152,7 +167,7 @@ retriever, the agent, the response). A real trace, captured from an actual reque
 
 ## What's deliberately not included
 
-Researched and considered, then scoped out rather than left unfinished:
+These were researched and considered, then scoped out deliberately, not left unfinished:
 
 - **GraphRAG**: plain vector RAG covers support-ticket retrieval well; graph cross-referencing
   fits a different kind of domain, like contract review, better than this one.
