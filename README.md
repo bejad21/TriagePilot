@@ -49,8 +49,8 @@ the workflow design and nothing else. Separate Qdrant collections, separate webh
 changing one never touches the other.
 
 ![Triage workflow canvas](docs/evidence/wix-triage-workflow.png)
-*The live n8n canvas for the Wix triage workflow: modality routing on the left, guardrails and
-the root agent in the middle, the resolution sub-agent and Qdrant retriever below it, escalation
+*The live n8n canvas for the Wix triage workflow: the webhook and guardrails on the left, the
+root agent in the middle, the resolution sub-agent and Qdrant retriever below it, escalation
 routing on the right.*
 
 Workflow JSON lives in `workflows/`:
