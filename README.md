@@ -170,18 +170,6 @@ retriever, the agent, the response). A real trace, captured from an actual reque
 
 ![Jaeger trace](docs/evidence/jaeger-trace-example.png)
 
-## What's deliberately not included
-
-These were researched and considered, then scoped out deliberately, not left unfinished:
-
-- **GraphRAG**: plain vector RAG covers support-ticket retrieval well; graph cross-referencing
-  fits a different kind of domain, like contract review, better than this one.
-- **Self-correcting reflection loop**: a reasonable future addition, deferred to keep scope
-  tight.
-- **Semantic caching**: a real cost win, but orthogonal to what this project is demonstrating.
-- **MCP server exposure and multimodal input**: both were built and verified against a different
-  corpus in an earlier iteration, but aren't part of what's published here.
-
 ## Current status
 
 Runs on local Docker Compose (n8n, Qdrant, Jaeger). Every workflow is exported to JSON and
