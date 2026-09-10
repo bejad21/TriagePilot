@@ -175,3 +175,4 @@ retriever, the agent, the response). A real trace, captured from an actual reque
 Runs on local Docker Compose (n8n, Qdrant, Jaeger). Every workflow is exported to JSON and
 committed regardless of host, so moving to a cloud VM later means standing up the same stack
 elsewhere and re-importing the JSON, not rebuilding anything.
+
