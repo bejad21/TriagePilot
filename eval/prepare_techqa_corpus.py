@@ -1,29 +1,22 @@
-"""Downloads the real TechQA-RAG-Eval benchmark (nvidia/TechQA-RAG-Eval on Hugging Face,
-Apache 2.0, https://huggingface.co/datasets/nvidia/TechQA-RAG-Eval - a reduced, RAG-ready
-cut of IBM Research's original TechQA dataset) and prepares two things TriagePilot needs
-for a third, real domain proving the system generalizes beyond Chatwoot and Wix:
+"""Downloads TechQA-RAG-Eval (nvidia/TechQA-RAG-Eval on Hugging Face, Apache 2.0,
+https://huggingface.co/datasets/nvidia/TechQA-RAG-Eval), a reduced, RAG-ready cut of
+IBM Research's TechQA, and prepares the TechQA domain:
 
-1. The real IBM Technotes cited as ground truth by the dataset's answerable questions,
-   written to infra/local_files/techqa-docs/ for the "Ingest TechQA Docs" n8n workflow to
-   chunk and embed into Qdrant. Every question in this dataset is answerable from exactly
-   one real Technote, so ingesting only the cited set (496 real documents, no sampling or
-   padding needed) already gives every eval question a genuine, retrievable source - unlike
-   Wix's corpus, which needed padding to reach a comparable scale.
-2. The real question/answer pairs (genuine questions asked on IBM's developer support
-   forums, with answers grounded in a published Technote - not synthetic Q&A) as eval rows,
-   matching the same {question, expected_answer, source_url} shape used throughout this
-   project's other eval datasets. `source_url` here is the cited Technote's filename, not a
-   public URL - this reduced dataset doesn't carry the original IBM support-site URLs.
+1. The IBM Technotes cited as ground truth by the answerable questions, written to
+   infra/local_files/techqa-docs/ for the "Ingest TechQA Docs" n8n workflow to chunk
+   and embed into Qdrant. Each question maps to exactly one Technote, so ingesting only
+   the cited set (496 documents) needs no sampling or padding, unlike Wix.
+2. The question/answer pairs (questions from IBM's developer support forums, answers
+   grounded in a published Technote) as eval rows, in the same
+   {question, expected_answer, source_url} shape as the other eval datasets.
+   `source_url` is the Technote filename, since this cut doesn't carry the original
+   IBM support-site URLs.
 
-Only the answerable rows (is_impossible == False) are used, matching WixQA-ExpertWritten's
-pattern of real, ground-truth-bearing questions. The dataset also includes 300 deliberately
-unanswerable questions (no Technote actually answers them) for training readers not to
-hallucinate - out of scope for this eval, which measures answer quality, not refusal
-behavior.
+Only answerable rows (is_impossible == False) are used. The 300 unanswerable questions
+are out of scope: this eval measures answer quality, not refusal behavior.
 
-The corpus is not committed to git (infra/local_files/ is gitignored, same policy as the
-Chatwoot and Wix corpora) since it's fully reproducible by running this script - no scraping,
-no auth, no rate limits.
+The corpus is gitignored (infra/local_files/) because this script reproduces it with no
+scraping, auth or rate limits.
 """
 import json
 import os

@@ -40,9 +40,8 @@ scoring node.
 | Mean Reciprocal Rank | 0.72 | 0.83 |
 | Answered / total | 26 / 30 | 27 / 30 |
 
-Commonly-cited RAGAS Faithfulness figures for mature production RAG systems sit around
-0.89-0.90 — both Wix (0.89) and TechQA (0.85) land in that real-world range, direct evidence
-these aren't toy-demo scores.
+Commonly cited RAGAS Faithfulness figures for mature production RAG systems sit around
+0.89-0.90. Wix (0.89) is at that figure and TechQA (0.85) is just below it.
 
 ## Retrieval-quality metrics: Hit Rate@K and MRR
 

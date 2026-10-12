@@ -1,28 +1,19 @@
-"""Downloads the real WixQA benchmark (Wix/WixQA on Hugging Face, MIT licensed,
-https://huggingface.co/datasets/Wix/WixQA) and prepares two things TriagePilot
-needs for a second, real domain proving the system generalizes beyond Chatwoot:
+"""Downloads WixQA (Wix/WixQA on Hugging Face, MIT licensed,
+https://huggingface.co/datasets/Wix/WixQA) and prepares the Wix domain:
 
-1. A bounded corpus of real Wix help center articles, written to
-   infra/local_files/wix-docs/ for the "Ingest Wix Docs" n8n workflow
-   (workflows/06-ingest-wix-docs.json) to chunk and embed into Qdrant.
-2. The real 200 ExpertWritten question/answer pairs (genuine customer support
-   tickets with expert-reviewed answers - the most authentic subset of the
-   three WixQA configs) as eval rows, matching the same
-   {question, expected_answer, source_url} shape used throughout this project's
-   other eval datasets.
+1. A corpus of Wix help center articles, written to infra/local_files/wix-docs/
+   for the "Ingest Wix Docs" n8n workflow (workflows/06-ingest-wix-docs.json) to
+   chunk and embed into Qdrant.
+2. The 200 ExpertWritten question/answer pairs (customer support tickets with
+   expert-reviewed answers) as eval rows, in the same
+   {question, expected_answer, source_url} shape as the other eval datasets.
 
-The corpus is not committed to git (infra/local_files/ is gitignored, same
-policy as the Chatwoot docs checkout) since it's fully reproducible by running
-this script - it re-downloads WixQA's public parquet files, no scraping,
-no auth, no rate limits.
+The corpus is gitignored (infra/local_files/) because this script reproduces it
+from WixQA's public parquet files, with no scraping, auth or rate limits.
 
-Scope note: the full wix_kb_corpus config has 4,109 real "article"-type
-entries (6,221 total across article/feature_request/known_issue types). This
-script selects every article cited as ground truth by an ExpertWritten
-question, plus a random sample bringing the total to ~1,200 - a scale
-deliberately comparable to Chatwoot's ~590-point corpus rather than the full
-4,109, to keep ingestion time bounded. Increase SAMPLE_SIZE below to ingest
-more.
+Scope: only "article" entries of wix_kb_corpus are used. The script takes every article cited by
+an ExpertWritten question plus a random sample (SAMPLE_SIZE = 1200 in total) to keep
+ingestion time bounded. Raise SAMPLE_SIZE to ingest more.
 """
 import json
 import os
