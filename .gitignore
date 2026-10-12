@@ -3,4 +3,3 @@
 n8n_data/
 qdrant_data/
 infra/local_files/
-.playwright-mcp/
