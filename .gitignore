@@ -1,0 +1,10 @@
+.env
+*.sqlite
+n8n_data/
+qdrant_data/
+infra/local_files/
+eval/ingest/work/
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/

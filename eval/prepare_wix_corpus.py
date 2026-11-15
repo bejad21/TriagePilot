@@ -1,0 +1,99 @@
+"""Download WixQA (Wix/WixQA on Hugging Face, MIT licensed,
+https://huggingface.co/datasets/Wix/WixQA) and prepare the Wix domain:
+
+1. A corpus of Wix help center articles, written to infra/local_files/wix-docs/
+   (read by ingest/build_collections.py and by the Wix workflow).
+2. The ExpertWritten question/answer pairs (customer support tickets with
+   expert-reviewed answers) as eval rows, in the same
+   {question, expected_answer, source_url} shape as the other eval datasets.
+
+The corpus is gitignored (infra/local_files/) because this script reproduces it
+from WixQA's public parquet files, with no scraping or authentication.
+
+Scope: only "article" entries of wix_kb_corpus are used: every article cited by
+an ExpertWritten question plus a random sample (SAMPLE_SIZE = 1200 in total).
+Raise SAMPLE_SIZE to ingest more.
+"""
+import json
+import os
+import re
+
+import pandas as pd
+
+SAMPLE_SIZE = 1200
+SEED = 42
+
+HF_BASE = "https://huggingface.co/datasets/Wix/WixQA/resolve/refs%2Fconvert%2Fparquet"
+EXPERTWRITTEN_URL = f"{HF_BASE}/wixqa_expertwritten/train/0000.parquet"
+KB_CORPUS_URL = f"{HF_BASE}/wix_kb_corpus/train/0000.parquet"
+
+
+def slugify(title, article_id):
+    slug = re.sub(r"[^a-zA-Z0-9]+", "-", title or "untitled").strip("-").lower()[:80]
+    return f"{slug}-{article_id[:8]}.txt"
+
+
+def select_corpus_articles(kb, cited_ids, sample_size, seed):
+    articles = kb[kb["article_type"] == "article"]
+    cited_articles = articles[articles["id"].isin(cited_ids)]
+    rest = articles[~articles["id"].isin(cited_ids)]
+    pad_n = max(0, sample_size - len(cited_articles))
+    padding = rest.sample(n=min(pad_n, len(rest)), random_state=seed)
+    return pd.concat([cited_articles, padding])
+
+
+def write_corpus_files(selected, out_dir):
+    os.makedirs(out_dir, exist_ok=True)
+    for _, row in selected.iterrows():
+        path = os.path.join(out_dir, slugify(row["title"], row["id"]))
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(f"# {row['title']}\n\n{row['contents']}")
+
+
+def build_url_to_filename_map(selected):
+    return {row["url"]: slugify(row["title"], row["id"]) for _, row in selected.iterrows()}
+
+
+def build_eval_rows(qa, kb):
+    kb_url = dict(zip(kb["id"], kb["url"]))
+    rows = []
+    for _, row in qa.iterrows():
+        urls = [kb_url.get(aid, "") for aid in row["article_ids"]]
+        rows.append({
+            "question": row["question"][:1000],
+            "expected_answer": row["answer"][:1000],
+            "source_url": "; ".join(u for u in urls if u)[:500],
+        })
+    return rows
+
+
+def main():
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    corpus_dir = os.path.join(project_root, "infra", "local_files", "wix-docs")
+    eval_out_path = os.path.join(os.path.dirname(__file__), "wix_eval_expertwritten.json")
+
+    qa = pd.read_parquet(EXPERTWRITTEN_URL)
+    kb = pd.read_parquet(KB_CORPUS_URL)
+
+    cited_ids = set()
+    for ids in qa["article_ids"]:
+        cited_ids.update(ids)
+
+    selected = select_corpus_articles(kb, cited_ids, SAMPLE_SIZE, SEED)
+    write_corpus_files(selected, corpus_dir)
+    print(f"Wrote {len(selected)} corpus files to {corpus_dir} "
+          f"({len(cited_ids)} unique articles cited by eval questions, "
+          f"{sum(selected['id'].isin(cited_ids))} of those covered)")
+
+    url_map = build_url_to_filename_map(selected)
+    url_map_path = os.path.join(os.path.dirname(__file__), "wix_source_url_to_filename.json")
+    json.dump(url_map, open(url_map_path, "w", encoding="utf-8"))
+    print(f"Wrote {len(url_map)} source_url -> filename mappings to {url_map_path}")
+
+    eval_rows = build_eval_rows(qa, kb)
+    json.dump(eval_rows, open(eval_out_path, "w", encoding="utf-8"))
+    print(f"Wrote {len(eval_rows)} real eval rows to {eval_out_path}")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,902 @@
+[
+  {
+    "id": 1,
+    "question": "I want to know how to go back to the history of my Wix site.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 129
+  },
+  {
+    "id": 2,
+    "question": "I want to make a duplicate version in the dashboard of my site for testing and trying new things.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 138
+  },
+  {
+    "id": 3,
+    "question": "I want to delete other payment methods and keep Square as my only payment processor.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 41
+  },
+  {
+    "id": 4,
+    "question": "I'd like to know how to customize the cart page on the mobile version of my site.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 97
+  },
+  {
+    "id": 5,
+    "question": "I want to unpublish my site on Wix using the Wix Editor.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 161
+  },
+  {
+    "id": 6,
+    "question": "Im having trouble adjusting the page height in the Wix Editor for a page without a footer. The section will not moving as expected.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 155
+  },
+  {
+    "id": 7,
+    "question": "I accidentally erased something in the Wix Editor and I need to add it back on.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 134
+  },
+  {
+    "id": 8,
+    "question": "My website stopped working, and I received a DNS_PROBE_FINISHED_NXDOMAIN error. I havent made any changes to the domain, and its connected to Wix. I also encountered an error with ID 7809 and the opcode QUERY.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 108
+  },
+  {
+    "id": 9,
+    "question": "I want to change the preview picture that shows when using my URL.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 153
+  },
+  {
+    "id": 10,
+    "question": "I am not satisfied with the product and would like to request a refund for my Google Ads campaign.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 122
+  },
+  {
+    "id": 11,
+    "question": "I need to know how to prevent an item in my CMS collection from being published to my website before its completed while using the Wix Editor.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 180
+  },
+  {
+    "id": 12,
+    "question": "Im interested in finding a Wix Partner to help redesign and update my existing website.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 86
+  },
+  {
+    "id": 13,
+    "question": "I want to undo the latest change in my site design.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 160
+  },
+  {
+    "id": 14,
+    "question": "I'm a sole trader in the UK. What account type is best for me?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 66
+  },
+  {
+    "id": 15,
+    "question": "My emails sent through Wix Email Marketing are being marked as spam or not received by clients, leading to delivery issues.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 103
+  },
+  {
+    "id": 16,
+    "question": "I want to create a new domain name and website with Wix.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 187
+  },
+  {
+    "id": 17,
+    "question": "I would like to download the reports of my website visits from December 15 to January 15.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 55
+  },
+  {
+    "id": 18,
+    "question": "Im trying to set up events with my Meta Pixel for Wix Bookings. I need guidance on how to track events related to service views and bookings.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 95
+  },
+  {
+    "id": 19,
+    "question": "How can I edit a published website?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 167
+  },
+  {
+    "id": 20,
+    "question": "Im encountering an issue with my payment settings on my unpublished website. The error message says that payouts are on hold.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 68
+  },
+  {
+    "id": 21,
+    "question": "Potential clients are unable to book a tour on my website due to the current plan limitations. I received an email stating that I need to upgrade to a Wix Business & eCommerce Premium Plan to enable bookings.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 110
+  },
+  {
+    "id": 22,
+    "question": "I would like to know how many options Wix offers per product.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 56
+  },
+  {
+    "id": 23,
+    "question": "I want to switch my current domain on premium to a new domain because my other business is closing down and theres no revenue. I have purchased the new domain but havent added it to my Wix account yet. I need to know if my current subscription can be easily changed to the new domain once I set it up on Wix.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 49
+  },
+  {
+    "id": 24,
+    "question": "User is inquiring about adding more menu titles to show in the header on their website.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 115
+  },
+  {
+    "id": 25,
+    "question": "Im encountering an Error 403 \"We Looked Everywhere For This Page\" while trying to modify my website.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 151
+  },
+  {
+    "id": 26,
+    "question": "How can I get a printed receipt for Wix Mobile POS.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 174
+  },
+  {
+    "id": 27,
+    "question": "I need to connect the elements on my dynamic item page to the correct fields in my CMS collection. Im looking for guidance on how to do this in Editor.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 179
+  },
+  {
+    "id": 28,
+    "question": "I would like to know how to change my payment provider for my Wix site after funds have been sent for an order.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 121
+  },
+  {
+    "id": 29,
+    "question": "I need help putting an anchor on a page using the Wix Editor.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 142
+  },
+  {
+    "id": 30,
+    "question": "The picture on my mobile site is dark. Its a standalone image that was carried over from my desktop site. I need guidance on adjusting the image settings for my mobile site.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 111
+  },
+  {
+    "id": 31,
+    "question": "What is the pricing for email marketing on Wix?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 83
+  },
+  {
+    "id": 32,
+    "question": "How does the pricing for Google Ads work?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 192
+  },
+  {
+    "id": 33,
+    "question": "I created a website using the Wix Editor, but it’s not responsive.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 144
+  },
+  {
+    "id": 34,
+    "question": "Im using the Wix website editor and Im experiencing free space on the edges of my site on larger screens. I need to understand why this is happening and how to correct it.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 164
+  },
+  {
+    "id": 35,
+    "question": "Im having trouble resizing the image and adding text to a new section I added to my site on Wix editor.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 197
+  },
+  {
+    "id": 36,
+    "question": "I want to know more about the \"Right Click Protect App\" to prevent visitors from copying my website content.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 46
+  },
+  {
+    "id": 37,
+    "question": "I received a manual payment from the pay button and I am unable to see the payment history.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 34
+  },
+  {
+    "id": 38,
+    "question": "I would like to change my billing cycle from 2 years to monthly payments.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 54
+  },
+  {
+    "id": 39,
+    "question": "Im having trouble removing a lightbox I added for subscriptions in the Wix Editor.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 133
+  },
+  {
+    "id": 40,
+    "question": "I need to temporarily remove the quick action button from the mobile view as I have not set it up yet.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 31
+  },
+  {
+    "id": 41,
+    "question": "My website displays correctly on PC and smartphone, but not on a tablet. The words on the page are off the screen.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 157
+  },
+  {
+    "id": 42,
+    "question": "User is inquiring about setting up the website to require an account for placing orders.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 116
+  },
+  {
+    "id": 43,
+    "question": "Im trying to add a hamburger menu to my desktop site in the Wix Editor, but its not listed.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 93
+  },
+  {
+    "id": 44,
+    "question": "I need help enabling customers to purchase multiple quantities of the same product at a discounted rate. For example, \"Buy 3 hats, get 20% off\".",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 124
+  },
+  {
+    "id": 45,
+    "question": "Im having trouble figuring out which PayPal account is connected to my site and where a payment went after connecting a second account.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 72
+  },
+  {
+    "id": 46,
+    "question": "Hey! I finished the \"Verifying Your Site with Google Search Console\" steps, but my site isn’t showing up in Google searches, even for specific queries, and I’ve checked that it’s indexed and can be crawled. Any ideas on what to do?\n",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 173
+  },
+  {
+    "id": 47,
+    "question": "Hey! I finished the \"Verifying Your Site with Google Search Console\" steps, but the \"Connect site to Google Chrome Console\" in the SEO Setup Checklist is still showing as incomplete.  Any ideas on what to do?\n\n\n",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 172
+  },
+  {
+    "id": 48,
+    "question": "I want to create a custom sign-up form that links to the members area on my site.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 39
+  },
+  {
+    "id": 49,
+    "question": "I want to know how to set up a table and connect it to my collection in Wix Studio.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 184
+  },
+  {
+    "id": 50,
+    "question": "Im experiencing a 404 error when trying to access my store page. It occurs on multiple platforms and with other users.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 148
+  },
+  {
+    "id": 51,
+    "question": "Im looking for the autoplay toggle for a video.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 186
+  },
+  {
+    "id": 52,
+    "question": "I'd like to see what items my customers added to their cart, and how items were sold",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 59
+  },
+  {
+    "id": 53,
+    "question": "I would like to unpublish my site.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 61
+  },
+  {
+    "id": 54,
+    "question": "Im having trouble changing the browser tab title on my live site. I followed the steps provided, but its still not working.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 162
+  },
+  {
+    "id": 55,
+    "question": "Im experiencing issues with the mobile view of my site. Elements are misplaced and some are overlapping.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 178
+  },
+  {
+    "id": 56,
+    "question": "I'm experiencing slow performance and unresponsive pages in the Wix Editor. How do I open my browser in incognito mode to troubleshoot this issue?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 147
+  },
+  {
+    "id": 57,
+    "question": "My banking information for payouts hasnt been updated for a couple of weeks. I need help with identifying if theres an issue with the verification process for my individual account or if the details were not updated correctly.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 100
+  },
+  {
+    "id": 58,
+    "question": "I would like to know how to customize the content in automated emails for Wix Bookings (confirmation, cancellation and reminders for users)",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 88
+  },
+  {
+    "id": 59,
+    "question": "I want to enable customers to personalize shirts on my website by adding their name. I need guidance on adding a custom text field to the product page for this purpose.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 42
+  },
+  {
+    "id": 60,
+    "question": "Im having a glitch on my site where the text on one of my menu items wont update.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 198
+  },
+  {
+    "id": 61,
+    "question": "Im having trouble applying a 50% off coupon in Wix Stores. Its not applying the discount, and I need assistance with this issue.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 71
+  },
+  {
+    "id": 62,
+    "question": "Im unable to access the Google Maps element in the footer of my Wix site. Im having trouble removing it, and I dont know where the overlapping items feature is located.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 96
+  },
+  {
+    "id": 63,
+    "question": "I am struggling with adjusting section heights in the Wix Editor. I need assistance with this issue.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 158
+  },
+  {
+    "id": 64,
+    "question": "I want to know how to add or mark a certain item as low in stock in my Wix shoe store.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 44
+  },
+  {
+    "id": 65,
+    "question": "Im experiencing an issue with my website automation. Despite receiving form submissions, the trigger for my automation is not working. The automation is set to trigger immediately after the form submission.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 69
+  },
+  {
+    "id": 66,
+    "question": "My business email in GMAIL suite is suspended and I dont know why or how to reactivate it. It says \"suspended by reseller.\"",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 101
+  },
+  {
+    "id": 67,
+    "question": "Im having trouble getting my dynamic list page to show items alphabetically on the published site, even though I have set up the sort conditions in the dataset settings.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 181
+  },
+  {
+    "id": 68,
+    "question": "Im having trouble verifying my business Wix Account to receive payments. The error message says my company couldnt be verified based on the Company number I provided. Its asking me to re-enter the Company number and upload a matching company document.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 195
+  },
+  {
+    "id": 69,
+    "question": "I would like to change the text size.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 165
+  },
+  {
+    "id": 70,
+    "question": "Im trying to connect my business Instagram account to my Wix site.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 135
+  },
+  {
+    "id": 71,
+    "question": "Im having trouble finding the address section in the rooms of Wix Hotels. Can you help me with this?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 73
+  },
+  {
+    "id": 72,
+    "question": "Im experiencing unwanted gaps at the bottom of my page when I publish it on the desktop version using the Wix Editor.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 168
+  },
+  {
+    "id": 73,
+    "question": "I would like to know how many sites I can have.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 57
+  },
+  {
+    "id": 74,
+    "question": "I want to retry a subscription payment using the same card.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 193
+  },
+  {
+    "id": 75,
+    "question": "Im having an issue with changing the name of a menu item on my site using the Wix Editor.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 131
+  },
+  {
+    "id": 76,
+    "question": "My site is unable to provide a secure connection.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 106
+  },
+  {
+    "id": 77,
+    "question": "Im encountering an error with Wix Payments regarding region or currency.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 67
+  },
+  {
+    "id": 78,
+    "question": "Im looking to create an automation for a standard Wix form.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 87
+  },
+  {
+    "id": 79,
+    "question": "I want to use pre-set Wix website designs.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 154
+  },
+  {
+    "id": 80,
+    "question": "My website does not appear in search engine results. I need help with indexing and optimizing my site's SEO to ensure it gets listed.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 107
+  },
+  {
+    "id": 81,
+    "question": "Im having trouble with the verification process for my Wix Payments account. Specifically, my documents arent being accepted.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 80
+  },
+  {
+    "id": 82,
+    "question": "I need help setting up an email for website messages to go to instead of mine.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 140
+  },
+  {
+    "id": 83,
+    "question": "My old website pages are still showing on Google despite updating the SEO. I have already tried removing the old URLs and submitting the updated sitemap to Google, but the issue persists.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 104
+  },
+  {
+    "id": 84,
+    "question": "I want to completely remove the login bar and anything associated with it from my site.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 176
+  },
+  {
+    "id": 85,
+    "question": "My website isnt showing up on Google. I checked if its indexed and nothing showed up. I need help with allowing search engines to index my site and submitting my sitemap to Google.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 194
+  },
+  {
+    "id": 86,
+    "question": "I need help adding a button with a link in the Wix Editor.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 163
+  },
+  {
+    "id": 87,
+    "question": "Im having trouble adding a page to the horizontal menu on my website.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 152
+  },
+  {
+    "id": 88,
+    "question": "How can I set up a flat rate shipping fee in Wix Stores.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 177
+  },
+  {
+    "id": 89,
+    "question": "How can I add a personalized name to my automated emails? I was advised to use dynamic values for this.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 35
+  },
+  {
+    "id": 90,
+    "question": "My Wix Payments account verification documents have been denied, specifically the company details.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 109
+  },
+  {
+    "id": 91,
+    "question": "How can I customize my wishlist page?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 64
+  },
+  {
+    "id": 92,
+    "question": "Im not seeing a payment reflected in my Chase account from a payout through Wix. The payout status is fine, and it has been 4 days since it was sent.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 91
+  },
+  {
+    "id": 93,
+    "question": "I need info on third-party POS solutions that would work for businesses in the UK.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 169
+  },
+  {
+    "id": 94,
+    "question": "Im having trouble updating a PDF on my website using the dashboard CMS. After replacing the PDF in the collection, it doesnt update on the website. I need guidance on enabling sandbox collections and syncing them with live collections to resolve this issue.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 191
+  },
+  {
+    "id": 95,
+    "question": "I want to know where to find Marketing Integrations in my sites dashboard to connect tools like Google Tag Manager and Google Analytics.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 47
+  },
+  {
+    "id": 96,
+    "question": "I want to take the home page of my copy site and make it the home page on my current site.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 50
+  },
+  {
+    "id": 97,
+    "question": "The user is inquiring about connecting Google Analytics 4 with their Wix site.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 112
+  },
+  {
+    "id": 98,
+    "question": "I need help with switching my websites template to a new design.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 141
+  },
+  {
+    "id": 99,
+    "question": "Im trying to remove a menu from the header of my Wix site.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 200
+  },
+  {
+    "id": 100,
+    "question": "What are the collection limits in Wix Store?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "wix",
+    "source_id": 81
+  }
+]

@@ -1,0 +1,902 @@
+[
+  {
+    "id": 1,
+    "question": "Why dbheap memory keeps increasing when I am running select count(*) for each table in my BLU database?\n\n\n\nI am running DB2 V11.1. It is a BLU database size of about 70T, most of the tables are column organized. I run select count(*) for each table, and finally got out of memory for dbheap. My question is:\n\n    How to release the data in dbheap.\n",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 426
+  },
+  {
+    "id": 2,
+    "question": "where is the websphere application server 9.0.0.4 fix for developers\n\nI am using the was 9.0.0.0 in rad/rsa 9.6.1 for Windows. I cannot upgrade to the 9.0.0.4 fixpack, because there is no developer edition. On the downloadpage there are Base, Network Deployment, DMZ Secure Proxy Server and IBM Web Enablement for IBM i, but no Developers! See link text For was 8.5.5.10 there exists a developers edition. Where can I download the Websphere Application Server fix pack 9.0.0.4 Developers?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 462
+  },
+  {
+    "id": 3,
+    "question": "Help with Security Bulletin: Multiple vulnerabilities in IBM® Java SDK affect WebSphere Enterprise Service Bus (CVE-2015-2613)\n\nI would like to know details on how vulnerabilities in IBM Java SDK affect Websphere Application Server and in turn, Websphere Enterprise Service Bus product. ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 72
+  },
+  {
+    "id": 4,
+    "question": "Does ITCAM for HTTP Server 7.1 FP4 work with IBM HTTP Server (IHS) 8.5.5.10 on AIX 7.2.x ?\n\nDoes ITCAM for HTTP Server 7.1 FP4 work with IBM HTTP Server (IHS) 8.5.5.10 on AIX 7.2.x ? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 296
+  },
+  {
+    "id": 5,
+    "question": "How do we set HttpOnly and secure flag in Oracle Weblogic 12c to secure IBM Atlas?\n\nHow do we set HttpOnly and secure flag in Oracle Weblogic 12c to secure IBM Atlas? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 563
+  },
+  {
+    "id": 6,
+    "question": "Would like to know if WebSphere Extreme Scale  is leap year and leap second compliant. Is there any documentation that talks about this?\n\nWould like to know if WebSphere Extreme Scale is leap second compliant. Is there any documentation that talks about this? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 535
+  },
+  {
+    "id": 7,
+    "question": "How can I configure a DataPower MQ client to use mutual authentication with SSL?\n\nI am looking to setup a DataPower MQ Client to use SSL in mutual authentication mode with a Remote WebSphere MQ Manager. ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 446
+  },
+  {
+    "id": 8,
+    "question": "How can I query the Derby database in Portal via SQL statements?\n\nI have a Portal system I just installed. I have not yet run database-transfer to copy the data from the Derby database to a DB2, Oracle, or SQL Server database. I don't wish to transfer to an external database and I have a need to run a SQL query against a table or two in the Derby database to troubleshoot an issue. \r\nHow can I perform this action? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 341
+  },
+  {
+    "id": 9,
+    "question": "Why are some Datatypes corrupt after Impact cluster failover/failback ?\n\n\n\nRunning Impact 7.1.0.11. The symptom is whenever Impact does a failover, a couple DataTypes\nturn out empty.\n\nI've checked the type files before and after Impact failover and the difference happens in the property\n\n*.SQL.USERPARAMETERS\n\nThis property no longer exists for the corrupted datatypes\".\n",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 523
+  },
+  {
+    "id": 10,
+    "question": "Netcool/Impact 6.1.0: How to change the HSQLDB password?\n\nNetcool/Impact 6.1.0: How to change the HSQLDB password?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 397
+  },
+  {
+    "id": 11,
+    "question": "Where can I find information on security issues addressed in WAS fix pack 8.5.5.6?\n\nI am planning to upgrade to WAS fix pack 8.5.5.6 and would like to know what security vulnerabilities, if any, are addressed in this fix pack. ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 254
+  },
+  {
+    "id": 12,
+    "question": "You want to know how to make persistent the events that indicate when a queue manager has started and stopped.\n\nYou want to know how to make persistent the events that indicate when a queue manager has started and stopped.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 556
+  },
+  {
+    "id": 13,
+    "question": "Does IBM MQ Server installation include a Java Runtime Engine (JRE) and what is it used for?\n\nDoes IBM MQ Server installation include a Java Runtime Engine (JRE)?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 173
+  },
+  {
+    "id": 14,
+    "question": "ITMv6 issue: Cognos reports run for an extended period, sometimes never finishes\n\nITMv6 issue: Cognos reports run for an extended period, sometimes never finishes\n\n",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 319
+  },
+  {
+    "id": 15,
+    "question": "Netcool/Impact (all versions): OMNIbusEventReader Filter Analyzer error \"rule includes an unsupported expression\"\n\nNetcool/Impact (all versions): OMNIbusEventReader Filter Analyzer error \"rule includes an unsupported expression\"\n\nThis occurs when comparing two ObjectServer fields against each other in a Filter. ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 174
+  },
+  {
+    "id": 16,
+    "question": "Is Java 8 supported for EJBDeploy on WebSphere Application Server 8.5.5.9 or later?\n\nIs Java 8 supported for EJBDeploy on WebSphere Application Server 8.5.5.9 or later?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 128
+  },
+  {
+    "id": 17,
+    "question": "Where do I find list of all document formats indexable and supported by ICC Content Search Services Support (CSSS)?\n\nWhere do I find list of all document formats indexable and supported by ICC Content Search Services Support (CSSS)? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 287
+  },
+  {
+    "id": 18,
+    "question": "ODR OOM issue\n\nI got ODR OOM after upgrading the WAS to v8553. No configuration or traffic load changing. Do I need a fix pack?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 586
+  },
+  {
+    "id": 19,
+    "question": "Help with Security Bulletin: IIB is affected by deserialization RCE vulnerability in IBM WebSphere JMS Client\n\nI need to understand details regarding Security Bulletin:IBM Integration Bus is affected by deserialization RCE vulnerability in IBM WebSphere JMS Client (related to CVEID: CVE-2016-0360). Where can I find this information? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 181
+  },
+  {
+    "id": 20,
+    "question": "Can Portal prevent the usage of simultaneous logins with the same userID?\n\nIs it possible for WebSphere Portal to limit the usage of a userID to one authenticated session as a time? In other words, prevent authenticating to Portal as \"user1\" from one browser and then simultaneously authenticating to Portal again as \"user1\" from another browser? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 348
+  },
+  {
+    "id": 21,
+    "question": "Help with Security Bulletin: Security vulnerabilities have been identified in IBM DB2 shipped with WebSphere Remote Server (CVE-2014-8730)\n\nI need to understand details regarding Security Bulletin: Security vulnerabilities have been identified in IBM DB2 shipped with WebSphere Remote Server (CVE-2014-8730). Where can I find this information? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 132
+  },
+  {
+    "id": 22,
+    "question": "Is it possible to move all the P8 logs out of the default location?\n\nWe are looking to move all the P8 logs out of the default FileNet folder in Websphere. The trace log can be moved easily; however, the error log and PE logs also need to be moved. ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 106
+  },
+  {
+    "id": 23,
+    "question": "Why am I getting an SSL Key Exception (RSA premaster secret error) when trying to create a syndication pair?\n\n\n\nWhen trying to create the syndication pair for a virtual portal, I am getting the following exception:\n\n\"IWKWC0016E: The remote service can not be retrieved. Either the URL you entered is incorrect, the server you indicated does not contain IBM Web Content Manager or the web service has been incorrectly configured and could not be located. Check the log for more details https://1.23.456.789 <-- your ip address or hostname will be shown here\n\n/wps/wcm/vpname/basicauth/SyndicationServlet?reqlocale=en_US& javax.net.ssl.SSLKeyException: RSA premaster secret error\"",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 369
+  },
+  {
+    "id": 24,
+    "question": "Why get SQL1227N when replay db2look output on DB2 V9.7 FP11?\n\nWhy get below SQL1227N when replay db2look output on DB2 V9.7 FP11?\n\n     -----\n     UPDATE SYSSTAT.COLUMNS SET COLCARD=4, NUMNULLS=1, SUB_COUNT=-1, SUB_DELIM_LENGTH=-1, \n     AVGCOLLENCHAR=7, HIGH2KEY='', LOW2KEY='        ', AVGCOLLEN=12 WHERE COLNAME = 'COL1' \n     AND TABNAME = 'TAB1' AND TABSCHEMA = 'DB2INST1'\n     DB21034E  The command was processed as an SQL statement because it was not a\n     valid Command Line Processor command.  During SQL processing it returned:\n     SQL1227N  The catalog statistic \"\" for column \"HIGH2KEY\" is out of range for\n     its target column, has an invalid format, or is inconsistent in relation to\n     some other statistic. Reason Code = \"3\".  SQLSTATE=23521\n     -----",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 518
+  },
+  {
+    "id": 25,
+    "question": "Can not create a portal wcm syndicator-subscriber pair. The \"Subscribe Now\" window pops up but is blank or corrupted. Why?\n\nCan not create a portal wcm syndicator-subscriber pair. The \"Subscribe Now\" window pops up but is blank or corrupted.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 134
+  },
+  {
+    "id": 26,
+    "question": "Reporting in Rhapsody\n\n\n\nHello All,\n\nI can't find the reports plus in my Rhapsody v8.1.2 x64\n\nanybody knows the reason.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 393
+  },
+  {
+    "id": 27,
+    "question": "I need to move my perpetual license of SPSS v24 to my new machine.\n\nI have my authorization code first given to me, but since we did not renew our support contract we can't seem to download the software. I was originally told that I could download the trial version and it would have the authorization wizard where I could input the code and move forward. But the only downloadable version is subscription version with no authorization wizard. How do I move forward? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 478
+  },
+  {
+    "id": 28,
+    "question": "Why can't I search groups after upgrading to WebSphere Application Server 8.5.5.10?\n\nWhy can't I search groups after upgrading to WebSphere Application Server 8.5.5.10?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 354
+  },
+  {
+    "id": 29,
+    "question": "Help with Security Bulletin: A security vulnerability has been identified in WebSphere Application Server shipped with IBM Business Monitor (CVE-2015-0138)\n\nI need to understand details regarding Security Bulletin: A security vulnerability has been identified in WebSphere Application Server shipped with IBM Business Monitor (CVE-2015-0138). Where can I find this information? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 240
+  },
+  {
+    "id": 30,
+    "question": "Does the BPM internal Document Store work with IBM DB2 pureScale?\n\nI use IBM DB2 pureScale with my BPM installation. During startup of the server and initialization of the internal document store I see hanging threads in the systemOut.log and the process will not finish. How can this be solved? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 599
+  },
+  {
+    "id": 31,
+    "question": "Help with Action required for IIIB V9 and WMB V8 Hypervisor Editions for security vulnerabilities in Red Hat Linux\n\nI need to understand details regarding Action required for IBM Integration Bus Hypervisor Edition V9.0 and WebSphere Message Broker Hypervisor Edition V8.0 for security vulnerabilities in Red Hat Linux. Where can I find this information? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 487
+  },
+  {
+    "id": 32,
+    "question": "Problem with XMLLIB->VALIDATEEX during XML Validation\n\nI am using XMLLIB VALIDATEXX in WTX 8.3.0.5 for XML Validations and it is running fine on Windows.\nWhen deployed same code on zos map is executing in loop(output card having rule with xmllib method call is not completing) \nPlease suggest.Thanks",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 574
+  },
+  {
+    "id": 33,
+    "question": "Can I obtain latest version WorkPlace(AE)'s source code?\n\nCan I obtain latest version WorkPlace's source code? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 297
+  },
+  {
+    "id": 34,
+    "question": "Installation of Portal 7.0 CF fails with version mismatch\n\n\n\nInstallation of Portal 7.0 CF fails with message,\n\n\"Profile version is not the same as portal binary version before updating portal binary.\"",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 94
+  },
+  {
+    "id": 35,
+    "question": "I am running WebSphere App server on 64bit JVM with plenty of free system memory,  how come I still get Native OutOfMemory errors (NOOM)?\n\nI am running WebSphere App server on 64bit JVM with plenty of free system memory,  how come I still get Native OutOfMemory errors (NOOM)?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 45
+  },
+  {
+    "id": 36,
+    "question": "Crash happened due to \"PI50993:Apache HTTPComponents vulnerabilities in WebSphere Application Server (CVE-2012-6153, CVE-2014-3577)\"\n\n\n\nDetails of gpf crash events: A VerifyError was thrown due to \"Inaccessible class\" at offset 39(0x27) of the method executeInternal(Lorg/springframework/http/HttpHeaders;[B)Lorg/springfram ework/http/client/ClientHttpResponse of the above class org/springframework/http/client/HttpComponentsClientHttpRequest.\n\nLooking at method the bytecodes :\n\n31 invokespecial 15 org/apache/http/entity/ByteArrayEntity.([B)V 34 astore 4 36 aload3 37 aload 4 39 invokeinterface2 41 invokeinterface 16 org/apache/http/HttpEntityEnclosingRequest.setEntity(Lorg/apache/http/Ht tpEntity;)V\n\nThe above sequence of bytecodes indicates it created an instance of org/apache/http/entity/ByteArrayEntity, trying to cast it to type Lorg/apache/http/HttpEntity; which in turns led to the \"Inaccessible class\" VerifyError message.\n\nIt is clear that class org/apache/http/HttpEntity was not loaded at all:\n\n    allclasses | grep org/apache/http/HttpEntity\n",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 126
+  },
+  {
+    "id": 37,
+    "question": "Why can't I connect to HTTPS server using Installation Manager 1.7.2?\n\n\n\nWhen using IBM Installation Manager 1.7.2 to connect to a HTTPS server, I get the following message:\n\nThe following repositories are not connected: https://www.ibm.com/software/repositorymanager/service/com.ibm. websphere.ND.v85/8.5.5.2.\n\nWhen I try to hit the URL, I get a 404 error.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 440
+  },
+  {
+    "id": 38,
+    "question": "Is it recommended to use symbolic links when installing Omnibus 8.1 fixpacks?\n\nIs it recommended to use symbolic links when installing Omnibus 8.1 fixpacks?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 32
+  },
+  {
+    "id": 39,
+    "question": "Cannot open module in exclusive edit - (no such file or directory)\n\n Hello.\n\nI have a module, that I can open normally, but when I try to open it in Exclusive Edit it tells me that \"no such file or directory\"\n\nIs this a known problem?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 545
+  },
+  {
+    "id": 40,
+    "question": "Where is latest information on fix packs for Cast Iron?\n\nWhere can I find more information on the fix packs and downloads available for the various releases of Cast Iron? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 372
+  },
+  {
+    "id": 41,
+    "question": "Where can I find more information about GNU C library (glibc) vulnerability affects IBM DataPower Gateway appliances (CVE-2015-0235)?\n\nI need to understand details regarding GNU C library (glibc) vulnerability affects IBM DataPower Gateway appliances (CVE-2015-0235). ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 280
+  },
+  {
+    "id": 42,
+    "question": "TWS / DWC and WebSphere 8.5.5.4+\n\nWebSphere for TWS & DWC were upgraded to 8.5.5.4 on most servers in a particular environment. However, any TWS servers that still had 8.5.5.2, could no longer be seen by the new DWC / WAS 8.5.5.4 servers. Those lower WAS version engines could not be added to the DWC.\n\nErrors seen are:\n\n     AWSUI0833E The operation could not be completed. There has been a communication failure. \n     The internal message is: AWSJCO005E WebSphere Application Server has given the following error: Error getting WsnNameService properties. ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 364
+  },
+  {
+    "id": 43,
+    "question": "I am receiving AC power supply failures on my DataPower 9235 appliance. How can I resolve this?\n\n\n\nI am observing the following errors on my DataPower 9235 device:\n\n[failure] Power supply '1' has no AC input power, or is not present. [failure] Power supply '2' has no AC input power, or is not present.\n\nHow can this be resolved? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 95
+  },
+  {
+    "id": 44,
+    "question": "Error #2070\n\nI purchased the SPSS grad pack and put one of the licenses on one computer and another on this one. This computer crashed and I was forced to reformat the hard drive. Subsequently, I lost SPSS in the process. After reinstalling the program, when I attempted to open a data set I received this error:\nError #2070 The application is unable to communicate properly with the license server. The license server may be down, or there may be other network-related communication or DNS issues interfering. This command is not executed. Specific symptom number: 3.  WHat is causing this?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 226
+  },
+  {
+    "id": 45,
+    "question": "Help with Security Bulletin: Persistent cross-site scripting vulnerability in Process Admin Console affecting IBM Business Process Manager (BPM) and WebSphere Lombardi Edition (WLE) CVE-2015-0156\n\nI need to understand details regarding Security Bulletin: Persistent cross-site scripting vulnerability in Process Admin Console affecting IBM Business Process Manager (BPM) and WebSphere Lombardi Edition (WLE) CVE-2015-0156). Where can I find this information? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 258
+  },
+  {
+    "id": 46,
+    "question": "Security Bulletin: Vulnerabilities in OpenSSL affect IBM WebSphere MQ Advanced Message Security (CVE-2016-2177)\n\nI need to understand details regarding Security Bulletin: Vulnerabilities in OpenSSL affect IBM WebSphere MQ Advanced Message Security (CVE-2016-2177). Where can I find this information?\n",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 275
+  },
+  {
+    "id": 47,
+    "question": "Help with Security Bulletin: API Connect is affected by a cross-site scripting vulnerability CVE-2018-1382\n\nI need to understand details regarding Security Bulletin: API Connect is affected by a cross-site scripting vulnerability CVE-2018-1382. Where can I find this information? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 176
+  },
+  {
+    "id": 48,
+    "question": "Help with Security Bulletin: Security Vulnerability in IBM WebSphere Application Server affects IBM SOA Policy Gateway Pattern for AIX Server 2.5 (CVE-2015-1920)\n\nI need to understand details regarding Security Bulletin: Security Vulnerability in IBM WebSphere Application Server affects IBM SOA Policy Gateway Pattern for AIX Server 2.5 (CVE-2015-1920). Where can I find this information? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 492
+  },
+  {
+    "id": 49,
+    "question": "DSNT408I SQLCODE -401 creating stored procedure CIUSNTSR after upgrading to DB2 11\n\n\n\nWhy would CIUSNTSR stored procedure creation fail with message DSNT408I and SQLCODE=-401? I am running CICS Interdependency Analyzer for z/OS (CICS IA) CIUDBCQ JCL when the failure occurs. This happened after I upgraded z/OS DB2 to V11.\n\nHere are the messages I receive:\n\n     DSNT408I SQLCODE = -401, ERROR:  THE OPERANDS OF AN ARITHMETIC OR COMPARISON OPERATION ARE\n     NOT COMPARABLE\n     DSNT418I SQLSTATE  = 42818 SQLSTATE RETURN CODE\n     DSNT415I SQLERRP   = DSNXOBFC SQL PROCEDURE DETECTING ERROR\n     DSNT416I SQLERRD   = 930 0  1  -1  0  0 SQL DIAGNOSTIC INFORMATION\n     DSNT416I SQLERRD   = X'000003A2' X'00000000' X'00000001' X'FFFFFFFF' X'00000000' X'00000000'\n     SQL DIAGNOSTIC INFORMATION\n",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 124
+  },
+  {
+    "id": 50,
+    "question": "A .NET API error is thrown when attempting to install ICC 4.0.1\n\nA .NET API error is thrown when attempting to install ICC 4.0.1. The error claims that either an incorrect version of the IBM FileNet P8 Content Processing Engine (CPE) .NET API 5.2.1.2 is installed or that it is missing some components.  How do I fix this?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 113
+  },
+  {
+    "id": 51,
+    "question": "On 30th June, could the Leap Second cause Linux to freeze and impact my MQ?\n\nOn 30th June, could the Leap Second cause Linux to freeze and impact my MQ? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 358
+  },
+  {
+    "id": 52,
+    "question": "Why am I seeing \"CWSXM0100E: Multiple replies have been produced for a single request flow in module\" ?\n\nWe are building a simple mediation module, consisting only of the request flow. The mediation module has one service invoke calling an external service through web service binding. Upon testing the process, we observe see that the service invoke is being called twice. There is no Fan-in or fan -out in the request flow. Below is the error: \"Caused by: com.ibm.wsspi.sibx.mediation.flow.MediationRuntimeException: CWSXM1023E: Exception when calling flow action: CWSXM0100E: Multiple replies have been produced for a single request flow in module\" ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 541
+  },
+  {
+    "id": 53,
+    "question": "Is using a monitored JBoss server with ITCAM supported in a Windows Service?\n\nIs using a monitored JBoss server with ITCAM supported in a Windows Service? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 142
+  },
+  {
+    "id": 54,
+    "question": "ICO's Roadmap of supporting next OpenStack versions\n\n\n\nHello,\n\nICO 2.5.0.2 is compatible with OpenStack kilo, is there a plan making it work with OpenStack Liberty/Mitika ?\n\nWould you share any information or link about the roadmap, please?\n\nThanks in advance.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 339
+  },
+  {
+    "id": 55,
+    "question": "Help with Security Bulletin: Vulnerability with Diffie-Hellman ciphers may affect IBM SOA Policy Gateway Pattern for Red Hat Enterprise Linux Server 2.5 (CVE-2015-4000)\n\nI need to understand details regarding Security Bulletin: Vulnerability with Diffie-Hellman ciphers may affect IBM SOA Policy Gateway Pattern for Red Hat Enterprise Linux Server 2.5 (CVE-2015-4000). This vulnerability is commonly referred to as \"Logjam\". Where can I find this information? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 329
+  },
+  {
+    "id": 56,
+    "question": "Can I change the ITCAM J2EE Agent Monitoring Level via the TEPS in version 7.1.1?\n\n\n\nIn the 7.1 version of the J2EE agent I could use the Agent Configuration to change the Monitoring Level for the agent- https://www.ibm.com/support/knowledgecenter/en/SS3JRN_7.2.0/com.ibm.itcamfapps_ad.doc_72/J2EE_agent_tema_install_guide/step10.html\n\nSo how can I change the Monitoring Level in the 7.1.1 agent?\n",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 392
+  },
+  {
+    "id": 57,
+    "question": "How to clear Errors Found in crm_mon\n\nHow to clear Errors Found in crm_mon ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 573
+  },
+  {
+    "id": 58,
+    "question": "What happens if I run arssyscr -I instance_name -r  without having Report Distribution enabled or installed?\n\nWhat will I see if I run arssyscr -I instance_name -r without having Report Distribution enabled or installed in CMOD v9.0?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 311
+  },
+  {
+    "id": 59,
+    "question": "SAP Agent suddenly crashed\n\n\n\nHello, my SAP Agent 7.1.1.1 crashed suddenly. I was able to restart it and since then it is working smoothly, but I would like to understand the root cause to avoid any reoccurrence.  \n\nAny idea ?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 201
+  },
+  {
+    "id": 60,
+    "question": "Is Internet Explorer 11 supported by Lombardi 7.2.XX\n\n We are using Lombardi 7.2.0.5 version. We are planning to upgrade Internet Explorer to IE 11 version.\n\nIs IE 11 supported? Are there any known issues? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 449
+  },
+  {
+    "id": 61,
+    "question": "Why does our Websphere application server hang when we apply Microsoft patch on our database server?\n\nWhy does our Websphere application server hang when we apply Microsoft patch on our database server?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 506
+  },
+  {
+    "id": 62,
+    "question": "VScan not working after migrating Datacap Application from 8.1 to 9.0.1\n\n\n\nHello,\n\nI have recently migrated one datacap application developed in Datacap 8.1 to Datacap 9.0.1. I followed the complete instruction provided in the link \n\nhttp://www.ibm.com/support/knowledgecenter/SSZRWV_9.0.1/com.ibm.dc.develop.doc/dcadv001.htm\n\n \n\nAfter migration, when I tried to execute the application using Datacap Desktop. I got errors that \"This batch has no data to process. Aborting\" and \"Unable to run queue\". I am attaching the screenshots of error. I am also attaching the DStudio rule's screenshot.\n\nI have verified and configured all the required settings.\n\nPlease guide if someone has faced the similar issue and resolved it.\n\nThanks.\n",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 307
+  },
+  {
+    "id": 63,
+    "question": "ILMT agent doesn`t show the hostname on inventory hardware\n\nHello community: I have a problem with a host. I installed ILMT agent and i exec all the task (install scan,initiate scan,run capacity and upload results....) after that i not see the hostname at the ILMT webpage, i only recognized the host by the System ID. The Hypervisor is KVM. I do this tasks with many other host like that and i not found problems.I attached an image.\n\nCan you help me to manage this issue?\n\nThank you and Best regards.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 135
+  },
+  {
+    "id": 64,
+    "question": "How do I recreate all the Oracle Text indexes for the Atlas database\n\nHow do I recreate all the Oracle Text indexes for the Atlas database ? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 531
+  },
+  {
+    "id": 65,
+    "question": "Why may I receive: Dump Event \"systhrow\" (00040000) Detail \"java/lang/OutOfMemoryError\" \"Failed to create a thread: retVal -1073741830, errno 11\" ?\n\nWhy may I receive: Dump Event \"systhrow\" (00040000) Detail \"java/lang/OutOfMemoryError\" \"Failed to create a thread: retVal -1073741830, errno 11\" ?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 441
+  },
+  {
+    "id": 66,
+    "question": "Why does nco_confpack -export fail with the message \"Tool in menu but not found\"?\n\n\n\nI tried to export OMNIbus configuration using nco_confpack command and I get the following message:\n\nTool in menu but not found, menu: AlertsMenu, tool: Close\n\nI've also tried using it with -list command and I get the same error.\n\nWhy is this happening?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 552
+  },
+  {
+    "id": 67,
+    "question": "Error while installing SpSS modeler trial version\n\nI have downloaded the SPSS modeller trial version (18.1) (64 bit) and trying to install the same. I get the following error 1152: Error extracting modelerClient64.msi to the temporary location\n",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 548
+  },
+  {
+    "id": 68,
+    "question": "Licence authorised in SPSS 22, however, same error code of missing license appears\n\nI had SPSS 22 that worked fine until the license ended. It was renewed and when I tried to re-enter the license number it was authorised, however, there was still an error code of missing license and so I can work with my SPSS.\n\nThis is the error code:\n\n    Error # 7001 There is no license for IBM SPSS Statistics. This could be due to a missing license file or no more network licenses available. For detailed information about this problem, run the 'showlic' utility found in the product installation directory. Execution of this command stops. Specific symptom number: 18\n\nI would appreciate your help! ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 331
+  },
+  {
+    "id": 69,
+    "question": "Cannot start Maximo/SCCD with error BMXAA4087E - The MAXMESSAGE value for group login and key username could not be retrieved.\n\nCannot start Maximo/SCCD with error BMXAA4087E - The MAXMESSAGE value for group login and key username could not be retrieved.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 178
+  },
+  {
+    "id": 70,
+    "question": "Help with Security Bulletin: TLS padding vulnerability affects IBM PureApplication System (CVE-2014-8730)\n\nI need to understand details regarding \"Security Bulletin: TLS padding vulnerability affects IBM PureApplication System (CVE-2014-8730)\". Where can I find this information? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 561
+  },
+  {
+    "id": 71,
+    "question": "Too many open files error cause Portal server out of service after a restart due to Hardware failure.\n\nAfter experienced a Hardware problem (OS shutdown totally), client start Portal Server and run for some time. Then they found the Portal out of service. The backend log shows lots of error related with Too Many Open Files",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 77
+  },
+  {
+    "id": 72,
+    "question": "MQRC_NOT_AUTHORIZED after migrating from Websphere V7.0 to V8.5.5\n\nAfter migration from WAS 7 TO WAS 8.5.5.3 ,WAS is unable to communicate with MQ and we see the following errors in the SystemOut.log:                                                         \n                                                                                                                                                                                                                      \ncom.ibm.msg.client.jms.DetailedJMSSecurityException: JMSWMQ2013: The security authentication was not valid that was supplied for QueueManager 'XXXQM' with connection mode 'Client' and host name 'ipaddress(port)'. \nPlease check if the supplied username and password are correct on the QueueManager to which you are connecting. at com.ibm.msg.client.wmq.common.internal.Reason .reasonToException(Reason.j ava:516)                 \n.....                                                                                                                                                                                                                 \nCaused by: com.ibm.mq.MQException: JMSCMQ0001: WebSphere MQ call failed with compcode '2' ('MQCC_FAILED') reason '2035' ('MQRC_NOT_AUTHORIZED'). at com.ibm.msg.client.wmq.common.internal.Reason.createException (Reason.java:204)\n                                                                         \n                                                                                                                                                                                                                      What is causing this?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 336
+  },
+  {
+    "id": 73,
+    "question": "Cannot launch RFT 8.2\n\n\n\nHello.\n\nCould anyone can help to see why I cannot launch RFT 8.2? When I launch RFT. I get an error message--\"An error has occurred. See the log file...\" I check the log file. It shows\n\n!SESSION Mon Nov 04 12:46:16 CST 2013 ------------------------------------------\n!ENTRY org.eclipse.equinox.launcher 4 0 2013-11-04 12:46:16.359\n!MESSAGE Exception launching the Eclipse Platform:\n!STACK\njava.lang.ClassNotFoundException: org.eclipse.core.runtime.adaptor.EclipseStarter\n    at java.net.URLClassLoader.findClass(URLClassLoader.java:423)\n    at java.lang.ClassLoader.loadClass(ClassLoader.java:653)\n    at java.lang.ClassLoader.loadClass(ClassLoader.java:619)\n    at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:616)\n    at org.eclipse.equinox.launcher.Main.basicRun(Main.java:574)\n    at org.eclipse.equinox.launcher.Main.run(Main.java:1407)\n    at org.eclipse.equinox.launcher.Main.main(Main.java:1383)\n\nIf I launch RFT with -clean or -vm option, the same phenomenon occurs.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 569
+  },
+  {
+    "id": 74,
+    "question": "Need help accessing my SPSS access code?\n\nI downloaded SPSS GradPack (Standard) 25 6 Months for my Mac. The IBM SPSS Statistics 24 licensing page pops up for me to enter the code. I enter the code provided and then hit next, and it tells me the code is too short to be valid? What code do I use then? I need this resolved fast, my first assignment is due soon. I was only given a 16-digit access code, not a 20-digit?\n\n\n\nThis dW Answers question is about an IBM document with the Title:\nSPSS Student Version and Graduate Pack Resources",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 228
+  },
+  {
+    "id": 75,
+    "question": "Error running krzgrant.sql script provided with 6.3.1.2-TIV-ITM_KRZ-IF0003.tar\n\nWhen running the krzgrant.sql script provided in the package - 6.3.1.2-TIV-ITM_KRZ-IF0003.tar get the following errors:\n\nERROR at line 1:\nORA-00942: table or view does not exist ORA-06512: at line 50 \n\nHow to correct this?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 193
+  },
+  {
+    "id": 76,
+    "question": "During action in Rhapsody Statechart\n\n\n\nHi Folks,\n\n \n\nI am developing a statechart in Rhapsody and I have a question.\n\nI could not see in Rhapsody where I can insert an action that must occur during the whole time the state is active.\n\nI can only see : Actions on Entry     and    Actions on Exit.\n\nWhere is During Action?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 325
+  },
+  {
+    "id": 77,
+    "question": "Help with Security Bulletin: Multiple vulnerabilities in IBM Java SDK affect IBM OS Images for Red Hat Linux Systems and AIX (CVE-2015-0410 and CVE-2014-6593)\n\nI need to understand details regarding \"Security Bulletin: Multiple vulnerabilities in IBM Java SDK affect IBM OS Images for Red Hat Linux Systems and AIX (CVE-2015-0410 and CVE-2014-6593)\" Where can I find this information? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 154
+  },
+  {
+    "id": 78,
+    "question": "Cannot Authorize SPSS 19 Installation on New Computer,Need to Authorize SPSS 19 on a New Computer\n\nI'm currently using SPSS 19 and need to install it on a new computer, however, it will not authorize. I've spoken to SPSS support by phone but they recommended checking here. I'm running on a Mac, OS X Sierra, for SPSS 19. Would someone please be able to assist?,I'm currently running SPSS 19 and need to install it on a new computer. When I try to authorize it, it fails. I've spoken to SPSS over the phone to no avail. I'm running OS X Sierra. Could anyone please help? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 179
+  },
+  {
+    "id": 79,
+    "question": "Problems making XA connection from WMQ to WAS using a CCDT\n\n\n\nWe have applications hosted on WAS 7.0.0.27. We have two hubs in Websphere MQ end. Hub1 queue manager and Hub2 queue manager.\n\nWe have 3 QCF's configured at WAS end as mentioned below\n\n    jms/QM using a CCDT file pointing to a queue manager group.\n\n    jms/QM01 using a direct connection to hub1 queue manager\n\n    jms/QM02 using a direct connection to hub2 queue manager\n\nWe have 2 separate sync mdb listeners that connect using QCFs jms/QM01 and jms/QM02. We are using QCF jms/QM to put messages in MQ.\n\nWhile processing sync messages out listeners are going down.\n\nPlease advise.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 125
+  },
+  {
+    "id": 80,
+    "question": "Whether IBM Case Manager is using Apache Struts?\n\nWhether IBM Case Manager is using Apache Struts?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 127
+  },
+  {
+    "id": 81,
+    "question": "Unable to open profile from P8 Content Engine Configuration manager (CMUI) on Redhat Linux 7.2, getting GPF and javacore dump.\n\n\n\nLaunch configmgr then try to open an existing profile. Once I click ok on the dialog box to\n\"Verify your application server setting before proceeding...\" Configuration manager would crash and GPF. I can see the javacore.txt and dmp file created.\nThe javacore.txt contains the following:\n\n0SECTION TITLE subcomponent dump routine NULL =============================== 1TICHARSET UTF-8 1TISIGINFO Dump Event \"gpf\" (00002000) received 1TIDATETIME Date: 2016/05/05 at 04:53:30 1TIFILENAME Javacore filename: /opt/IBM/FileNet/ContentEngine/tools/configure/javacore.20160505.045330.25035.0002.txt 1TIREQFLAGS Request Flags: 0x81 (exclusive+preempt) 1TIPREPSTATE Prep State: 0x100 (trace_disabled) 1TIPREPINFO Exclusive VM access not taken: data may not be consistent across javacore sections NULL ------------------------------------------------------------------------ 0SECTION GPINFO subcomponent dump routine NULL ================================ 2XHOSLEVEL OS Level : Linux 3.10.0-327.13.1.el7.x86_64 2XHCPUS Processors - 3XHCPUARCH Architecture : x86 3XHNUMCPUS How Many : 1 3XHNUMASUP NUMA is either not supported or has been disabled by user NULL\n1XHEXCPCODE J9Generic_Signal_Number: 00000004 1XHEXCPCODE Signal_Number: 0000000B 1XHEXCPCODE Error_Value: 00000000 1XHEXCPCODE Signal_Code: 00000080 1XHEXCPCODE Handler1: F72A2E6A 1XHEXCPCODE Handler2: F724D00A 1XHEXCPCODE InaccessibleAddress: 00000000 NULL\n1XHEXCPMODULE Module: /lib/libcairo.so.2 1XHEXCPMODULE Module_base_address: D55FC000\n\nThis is a Redhat Linux 7.2 environment with Content Platform Engine CPE 5.2.1.4.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 452
+  },
+  {
+    "id": 82,
+    "question": "IBM Support Assistant data collector for BPM\n\nWhat can I use to obtain some standard information in order to debug my IBM Business Process Manager environment? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 571
+  },
+  {
+    "id": 83,
+    "question": "What exactly is \"wpcollector\" in WebSphere Portal Server?\n\nI've been told to get wpcollector output? What exactly is this?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 47
+  },
+  {
+    "id": 84,
+    "question": "Error TASK001X while upgrading Portal 8.0.0.1 to 8.0.0.1 CF14 during import-nodes sub-task\n\n Error TASK001X while upgrading Portal 8.0.0.1 to 8.0.0.1 CF14 during import-nodes sub-task",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 344
+  },
+  {
+    "id": 85,
+    "question": "Why do we observe the transaction rollback errors J2CA0024E and DSRA0080E with Oracle 12c and how can we fix it?\n\n\n\nWe are using BPM Advanced v8.5.6 in connection with the Oracle JDBC Driver 12.1.0.1.0. We observe many database transaction rollback exceptions:\n\n     J2CA0024E: Method rollback, within transaction branch ID <null> of resource pool jdbc/BPEDB, caught com.ibm.ws.exception.WsException: DSRA0080E: An exception was received by the Data Store Adapter. See original exception message: Could not rollback with auto-commit set on. with SQL State : 99999 SQL Code : 17274\n\nDue to the technote \"Advanced database support for IBM BPM Standard, IBM BPM Advanced, and IBM Business Monitor on distributed platforms\" this is a supported configuration.\n\nWhy do we observe these errors and how can we fix it?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 367
+  },
+  {
+    "id": 86,
+    "question": "The configuration task database-transfer failed with DB2 SQL Error: SQLCODE=-1585, SQLSTATE=54048\n\nWhile attempting to run the database-transfer task the following error is logged to the ConfigTrace.log:\naction-process-constraints: Fri Oct 10 13:20:34 CDT 2014 Target started: action-process-constraints [java] Executing java with empty input string [java] [10/10/14 13:20:35.877 CDT] Attempting to create a new Instance of com.ibm.db2.jcc.DB2Driver [java] [10/10/14 13:20:36.016 CDT] Instance of com.ibm.db2.jcc.DB2Driver created successfully [java] [10/10/14 13:20:36.016 CDT] Attempting to make connection using: jdbc:db2://:60500/:returnAlias=0; :: d2svc :: PASSWORD_REMOVED [java] [10/10/14 13:20:36.954 CDT] Connection successfully made [java] [10/10/14 13:20:37.073 CDT] ERROR: Error occurred gathering data from the source database [java] com.ibm.db2.jcc.am.SqlException: DB2 SQL Error: SQLCODE=-1585, SQLSTATE=54048, SQLERRMC=null, DRIVER=4.18.60 [java] at com.ibm.db2.jcc.am.kd.a(kd.java:752)",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 164
+  },
+  {
+    "id": 87,
+    "question": "Does ITCAM for MQ monitoring agent (kmq) use SYSTEM.MQXR.COMMAND.QUEUE causing Unknown Object Name [2085] event?\n\n\n\nUsing the ITCAM MQ Monitoring agent, we have a situation that generates alerts when a 2085 event (object unknown) occurs. We have recently seen alerts for the queue SYSTEM.MQXR.COMMAND.QUEUE\nWe found following technote:\nUnknown Object Name [2085], SYSTEM.MQXR.COMMAND.QUEUE\nhttp://www-01.ibm.com/support/docview.wss?uid=swg21681687\n\nThis technote does not mention Tivoli monitoring product, and only mentions monitoring products such as Nastel and InfraRed360.\nDoes Tivoli monitoring agent for WebSphere MQ use the SYSTEM.MQXR.COMMAND.QUEUE? We are try to find out which application is causing the 2085 event.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 274
+  },
+  {
+    "id": 88,
+    "question": "'Access is denied' install errors with ICC\n\nInstalling ICC 4.0.1 and then FP2 gives the 'Access is denied' error on WASSERVICE.exe. How to resolve this? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 66
+  },
+  {
+    "id": 89,
+    "question": "Help with Security Bulletin: WMB & IIB are affected by Open Source Tomcat vulnerability (CVE-2016-3092)\n\nI need to understand details regarding Security Bulletin: WebSphere Message Broker and IBM Integration Bus are affected by Open Source Tomcat vulnerability (CVE-2016-3092). Where can I find this information? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 76
+  },
+  {
+    "id": 90,
+    "question": "Security Bulletin: Vulnerabilities in SSL affect IBM DataPower Gateways (CVE-2015-0289)\n\nI need to understand details regarding Security Bulletin: Vulnerabilities in SSL affect IBM DataPower Gateways (CVE-2015-0289). Where can I find this information? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 378
+  },
+  {
+    "id": 91,
+    "question": "Does Portal 6.1.x support Oracle 11g?\n\n\n\nWe are running Portal Server v6.1.0.6 and I need to know what the newest version of Oracle that is supported with the WPS 6.1.0.6?\n\nSpecifically, What version of Oracle 11g is?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 418
+  },
+  {
+    "id": 92,
+    "question": "Why Theme Updates are not updated in the browser cache ?\n\n\n\nIf you change graphics in page header. Then packed the war file and update it via the Integrated Solutions Console. But the old graphic is still displayed until the user press Ctrl + F5 in Internet Explorer.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 97
+  },
+  {
+    "id": 93,
+    "question": "Why do I still get \"certificate expired\" error after adding new certificate?\n\n\n\nThe remote SSL vendor has provided us a new certificate to replace an expiring one. We have added the new certificate to the appropriate Datapower validation credential, however, connections are still failing with \"certificate expired\":\n\nmpgw(Inbound_MPG): tid(51005)[request][10.20xx.xx] gtid(51345): certificate validation failed for '/C=US/O=People Services/OU=IT/CN=test.site.com' against 'My_ValCred': certificate has expired",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 482
+  },
+  {
+    "id": 94,
+    "question": "How can I format a trace for CMOD v9.0 on Windows?\n\nHow can I format a CMOD trace on Windows?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 107
+  },
+  {
+    "id": 95,
+    "question": "Installed an STAP on a DB Server but it does not show up on my Appliance in S-TAP Control etc\n\n\n\nInstalled an STAP on a DB Server but it does not show up on my Appliance in S-TAP Control etc\n\nI get the following messages in the logs:-\n\n/tmp/guard_stap.stderr.txt on the DB Server :- \"Server wasn't heard from for nn sec during this attempt nnn sec total), closing and re-opening\"\n\nand from the Guardium Appliance - via fileserver in the /log/opt-ibm-guardium-log/snif/snif.log \"Unauthorized client connecting from ,rejecting\"\n\nWhat is the reason?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 50
+  },
+  {
+    "id": 96,
+    "question": "No trace is logged in Decision Warehouse, and no records in EXECUTION_TRACES table for a certain ruleset\n\n\n\nFor a certain ruleset, no trace is logged in DW, and no records can be found in EXEUTION_TRACES table of DW database.\n\nServer logs do not contain any messages about the execution traces for this ruleset.\n\nThe issue reproduces only for this project. For other projects deployed in RES, traces are being logged in DW. Also, the same project generates execution traces in other environments.\n\nThe following properties have been set:\n\n     monitoring.enabled = true\n     monitoring.filters = INFO_EXECUTION_DATE=true,INFO_EXECUTION_DURATION=true,INFO_TOTAL_TASKS_EXECUTED=true,INFO_TOTAL_RULES_NOT_FIRED=true,INFO_EXECUTION_EVENTS=true,INFO_TOTAL_TASKS_NOT_EXECUTED=true,INFO_TOTAL_RULES_FIRED=true,INFO_RULESET_PROPERTIES=true\n     ruleset.bom.enabled = false (for true value, the problem still occurs)\n     ruleset.sequential.trace.enabled = true\n     ruleset.trace.enabled = true\n\nHow can I diagnose this issue?",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 463
+  },
+  {
+    "id": 97,
+    "question": "Cognos Analytics - Images not displayed in PDF/Excel, working in HTML\n\nI've just completed an upgrade to Cognos Analytics 11.0.3. When running existing reports in HTML, the images are displayed but when I try to run them in PDF/Excel they are not. ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 606
+  },
+  {
+    "id": 98,
+    "question": "I need to transfer my SPSS 24 licence to a new computer\n\nI need to transfer my SPSS 24 license to a new machine. I have only used my activation code on one computer so far, and that computer was found to be defective which has led me to get a new computer. I was able to download SPSS 24 Gradpack onto the new computer, but every time I put in the activation code, the program gives me an error message saying that I am not allowed to generate any new licenses.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 493
+  },
+  {
+    "id": 99,
+    "question": "Can IBM Content Navigator be installed on Windows and be deployed to an Application Server that is running on a Unix Platform?\n\nCan IBM Content Navigator be installed on Windows and be deployed to an Application Server that is running on a Unix Platform? ",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 389
+  },
+  {
+    "id": 100,
+    "question": "How to proceed when jextract utility is throwing an OutOfMemory error ?\n\n\n\nI was getting a crash and was told to provide a \"jextracted core dump\". I ran the jextract command as instructed:\n\n/java/jre/bin/jextract [CORE_PATH]\n\nbut I am getting now an OutOfMemory error when jextract itself is running so I cannot proceed with the original crash investigation.",
+    "gold_sources": [],
+    "expected_behavior": "escalate",
+    "origin": "mechanical",
+    "source_dataset": "techqa",
+    "source_id": 456
+  }
+]
